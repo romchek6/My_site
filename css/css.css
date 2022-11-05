@@ -83,10 +83,14 @@ header ul li ul li a{
 .carousel-caption h5{
     font-size: 2rem;
     font-weight: 500;
-    background: black;
+    background: rgba(0, 0, 0, 0.5);
     max-width: 100%;
     padding: 0.3em;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
+    color: white;
+}
+.carousel-caption h5 a{
+    opacity: 1;
     color: white;
 }
 .carousel-caption-hack{
@@ -100,9 +104,150 @@ header ul li ul li a{
     width: 100%;
 }
 .carousel-caption h5 a:hover{
-    color: white;
     text-decoration: underline;
 }
+/*
+    main
+ */
+.main-content h2{
+    margin: 20px 0;
+}
+.main-content .post{
+    margin-bottom: 3em;
+}
+.main-content .post_text{
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+.main-content .post_text h3{
+    padding: 10px 0;
+}
+.main-content .post_text h3 a:hover{
+    text-decoration: underline;
+    color: #5c5b5b;
+}
+.main-content .post_text i{
+    padding-right: 10px;
+}
+/*
+   sidebar
+ */
+.search{
+    margin-top: 78.39px;
+}
+.sidebar .section{
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+
+}
+.sidebar .section h3{
+    margin: 20px 0;
+}
+.sidebar .topics ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border-top:1px solid #e0e0e0;
+}
+.sidebar .topics ul li a{
+    display: block;
+    padding: 15px 0px;
+    border-bottom:1px solid #e0e0e0;
+    transition: all 0.5s;
+    font-weight: 500;
+    font-size: 1.2em;
+    color: #5c5b5b;
+}
+.sidebar .topics ul li a:hover{
+    padding-left: 15px;
+}
+/*
+    footer
+*/
+.footer{
+    background:#303036;
+    color: #d3d3d3;
+    position: relative;
+}
+.footer .section{
+    padding: 22px;
+}
+.footer h4{
+    color: white;
+}
+.footer .about .contact span{
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+.footer .about .socials a{
+    border: 1px solid gray;
+    width: 45px;
+    height: 41px;
+    padding-top: 5px;
+    margin-right: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.3em;
+    border-radius: 5px;
+    transition: all 0.5s;
+    color: white;
+}
+.footer .about .socials a:hover{
+    border :1px solid white;
+}
+.footer .links ul a{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    transition: all 0.5s;
+    color: white;
+}
+.footer .links ul a:hover{
+    margin-left: 15px;
+}
+.footer .contact-form .contact-input{
+    background: #272727;
+    color: #bebdbd;
+    width: 100%;
+    margin-bottom: 10px;
+    line-height: 1.5rem;
+    padding: .9rem 1.4rem;
+    border:none;
+}
+.footer .contact-form .contact-input:focus{
+    background: #1a1a1a;
+}
+.footer .contact-form .contact-btn{
+    float: right;
+    font-size:1.1em;
+}
+.footer .footer-bottom{
+    background: #343a40;
+    color: #686868;
+    height: 50px;
+    /*width: 100%;*/
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: -40px;
+    left: 0px;
+    padding-top: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
