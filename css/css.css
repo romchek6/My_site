@@ -168,6 +168,7 @@ header ul li ul li a{
     footer
 */
 .footer{
+    margin-top: 20px;
     background:#303036;
     color: #d3d3d3;
     position: relative;
@@ -256,8 +257,54 @@ header ul li ul li a{
 .single_post .single_post_text a:hover{
     text-decoration: none;
     color: #414141;
-
 }
+/*
+    reg
+ */
+.reg_form{
+    margin: 20px 0;
+}
+.reg_form h2{
+    text-align: center;
+    margin: 20px 0;
+}
+.reg_form input{
+    height: 2.64rem;
+}
+.reg_form a{
+    transition: all 0.5s;
+    margin-left: 80px;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #5c5b5b;
+    text-decoration: underline;
+}
+.reg_form a:hover{
+    margin-left: 85px;
+}
+/*
+    input
+*/
+.input_form{
+    margin-top: 110px;
+    margin-bottom: 111px;
+}
+.input_form h2{
+    text-align: center;
+    margin: 20px 0;
+}
+.input_form a{
+    transition: all 0.5s;
+    margin-left: 110px;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #5c5b5b;
+    text-decoration: underline;
+}
+.input_form a:hover{
+    margin-left: 115px;
+}
+
 
 
 
