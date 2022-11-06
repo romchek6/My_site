@@ -109,25 +109,25 @@ header ul li ul li a{
 /*
     main
  */
-.main-content h2{
+.main_content h2{
     margin: 20px 0;
 }
-.main-content .post{
+.main_content .post{
     margin-bottom: 3em;
 }
-.main-content .post_text{
+.main_content .post_text{
     background: white;
     padding: 10px;
     border-radius: 5px;
 }
-.main-content .post_text h3{
+.main_content .post_text h3{
     padding: 10px 0;
 }
-.main-content .post_text h3 a:hover{
+.main_content .post_text h3 a:hover{
     text-decoration: underline;
     color: #5c5b5b;
 }
-.main-content .post_text i{
+.main_content .post_text i{
     padding-right: 10px;
 }
 /*
@@ -237,6 +237,31 @@ header ul li ul li a{
     left: 0px;
     padding-top: 14px;
 }
+/*
+    Single_post
+*/
+.single_post{
+    margin-bottom: 20px;
+}
+.single_post .info{
+   margin: 20px 0;
+}
+.single_post .info i{
+    display: inline-block;
+    padding-right: 20px;
+}
+.single_post .single_post_text a{
+    text-decoration: underline;
+}
+.single_post .single_post_text a:hover{
+    text-decoration: none;
+    color: #414141;
+
+}
+
+
+
+
 
 
 
