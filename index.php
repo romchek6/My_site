@@ -1,3 +1,6 @@
+<?php
+    include_once 'path.php';
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,39 +20,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
     <!--    css-->
-    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="assets/css/css.css">
 </head>
 <body>
 
 <!-- header -->
-<header class="container-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-4">
-                <h1>
-                    <a href="/">My blog</a>
-                </h1>
-            </div>
-            <nav class="col-8">
-                <ul class="">
-                    <li><a href="#"><i class="fa-solid fa-house-chimney"></i> Главная</a></li>
-                    <li><a href="#"><i class="fa-solid fa-address-card"></i> О нас</a></li>
-                    <li><a href="#"><i class="fa-brands fa-servicestack"></i> Услуги</a></li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-user"></i>
-                            Кабинет
-                        </a>
-                        <ul>
-                            <li><a href="#">Админ панель</a></li>
-                            <li><a href="#">Выход</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</header>
+    <?php include_once 'app/include/header.php' ?>
 <!-- header end -->
 
 <!-- carousel -->
@@ -65,19 +41,19 @@
         <!--        </div>-->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="images/image1carousel.jpg" class="d-block w-100" height="400"  alt="...">
+                <img src="assets/images/image1carousel.jpg" class="d-block w-100" height="400" alt="...">
                 <div class="carousel-caption-hack carousel-caption d-none d-md-block">
                     <h5><a href="#">111</a></h5>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="images/image2carousel.jpg" class="d-block w-100" height="400"  alt="...">
+                <img src="assets/images/image2carousel.jpg" class="d-block w-100" height="400" alt="...">
                 <div class="carousel-caption-hack  carousel-caption d-none d-md-block">
                     <h5><a href="#">111</a></h5>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="images/image3carousel.jpeg" class="d-block w-100" height="400"  alt="...">
+                <img src="assets/images/image3carousel.jpeg" class="d-block w-100" height="400" alt="...">
                 <div class="carousel-caption-hack  carousel-caption d-none d-md-block">
                     <h5><a href="#">111</a></h5>
                 </div>
@@ -104,7 +80,7 @@
 
             <div class="post row">
                 <div class="post_img col-12 col-md-4">
-                    <img src="images/Screenshot_1.png" alt="post" class="img-thumbnail">
+                    <img src="assets/images/Screenshot_1.png" alt="post" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
@@ -123,7 +99,7 @@
 
             <div class="post row">
                 <div class="post_img col-12 col-md-4">
-                    <img src="images/image2carousel.jpg" alt="post" class="img-thumbnail">
+                    <img src="assets/images/image2carousel.jpg" alt="post" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
@@ -142,7 +118,7 @@
 
             <div class="post row">
                 <div class="post_img col-12 col-md-4">
-                    <img src="images/image2carousel.jpg" alt="post" class="img-thumbnail">
+                    <img src="assets/images/image2carousel.jpg" alt="post" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
@@ -161,7 +137,7 @@
 
             <div class="post row">
                 <div class="post_img col-12 col-md-4">
-                    <img src="images/image2carousel.jpg" alt="post" class="img-thumbnail">
+                    <img src="assets/images/image2carousel.jpg" alt="post" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
@@ -180,7 +156,7 @@
 
             <div class="post row">
                 <div class="post_img col-12 col-md-4">
-                    <img src="images/image2carousel.jpg" alt="post" class="img-thumbnail">
+                    <img src="assets/images/image2carousel.jpg" alt="post" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
@@ -224,62 +200,7 @@
 <!-- main end -->
 
 <!-- footer -->
-<div class="footer container-fluid">
-    <div class="footer-content container">
-        <div class="row">
-            <div class="section about col-md-4 cpl-12">
-                <h3 class="logo-text">My blog</h3>
-                <p>
-                    Мой блог - это лучший в мире блог струна, приют, принц, аккомпанемент, ртуть,
-                    лицо, строгий, образование, отступать, японец
-                    ложить, колун, гнев, высочество, исправлять
-                </p>
-                <div class="contact">
-                    <span><i class="fa-solid fa-phone"></i> 8-951-888-78-88</span>
-                    <span><i class="fa-solid fa-envelope"></i> 8-951-888-78-88</span>
-                </div>
-                <div class="socials">
-                    <a href="#"><i class="fa-brands fa-vk"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-            </div>
-            <div class="section links col-md-4 cpl-12">
-                <h3>Быстрые ссылки</h3>
-                <br>
-                <ul>
-                    <a href="">
-                        <li>55</li>
-                    </a>
-                    <a href="">
-                        <li>55</li>
-                    </a>
-                    <a href="">
-                        <li>55</li>
-                    </a>
-                    <a href="">
-                        <li>55</li>
-                    </a>
-                </ul>
-            </div>
-            <div class="section contact-form col-md-4 cpl-12">
-                <h3>Контакты</h3>
-                <br>
-                <form action="index.html" method="post">
-                    <input type="email" name="email" class="text-input contact-input" placeholder="Ваш email адрес...">
-                    <textarea name="message" rows="4" class="text-input contact-input"  placeholder="Ваше сообщение..."></textarea>
-                    <button type="submit" class="btn-big contact-btn">
-                        <i class="fa-solid fa-envelope"></i>
-                        Отправить
-                    </button>
-                </form>
-            </div>
-
-        </div>
-    </div>
-    <div class="footer-bottom">
-        &copy; myblog.com | designed by romchek6
-    </div>
-</div>
+<?php include_once 'app/include/footer.php' ?>
 <!-- footer end -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

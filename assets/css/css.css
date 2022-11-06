@@ -259,6 +259,52 @@ header ul li ul li a{
     color: #414141;
 }
 /*
+    input reg (v2)
+*/
+.reg2_form{
+    margin-top: 28vh;
+}
+.reg2_form h2{
+    text-align: center;
+    margin: 20px 0;
+}
+.reg2_form input{
+    height: 2.64rem;
+}
+.reg2_form a{
+    transition: all 0.5s;
+    margin-left: 70px;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #5c5b5b;
+    text-decoration: underline;
+}
+.reg2_form a:hover{
+    margin-left: 75px;
+}
+.input2_form{
+    /*margin-top: 18%;*/
+    margin-top: 38vh;
+}
+.input2_form h2{
+    text-align: center;
+    margin: 20px 0;
+}
+.input2_form a{
+    transition: all 0.5s;
+    margin-left: 60px;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #5c5b5b;
+    text-decoration: underline;
+}
+.input2_form a:hover{
+    margin-left:65px;
+}
+.input2_form button{
+    width: 40%;
+}
+/*
     reg
  */
 .reg_form{
@@ -273,21 +319,22 @@ header ul li ul li a{
 }
 .reg_form a{
     transition: all 0.5s;
-    margin-left: 80px;
+    margin-left: 70px;
     font-weight: 900;
     font-size: 1.2em;
     color: #5c5b5b;
     text-decoration: underline;
 }
 .reg_form a:hover{
-    margin-left: 85px;
+    margin-left: 75px;
 }
 /*
     input
 */
+
 .input_form{
-    margin-top: 110px;
-    margin-bottom: 111px;
+    margin-top: 115px;
+    margin-bottom: 114px;
 }
 .input_form h2{
     text-align: center;
@@ -295,14 +342,17 @@ header ul li ul li a{
 }
 .input_form a{
     transition: all 0.5s;
-    margin-left: 110px;
+    margin-left: 60px;
     font-weight: 900;
     font-size: 1.2em;
     color: #5c5b5b;
     text-decoration: underline;
 }
 .input_form a:hover{
-    margin-left: 115px;
+    margin-left:65px;
+}
+.input_form button{
+    width: 40%;
 }
 
 
