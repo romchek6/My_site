@@ -168,7 +168,7 @@ header ul li ul li a{
     footer
 */
 .footer{
-    margin-top: 20px;
+    margin-top: 4px;
     background:#303036;
     color: #d3d3d3;
     position: relative;
@@ -308,7 +308,7 @@ header ul li ul li a{
     reg
  */
 .reg_form{
-    margin: 20px 0;
+
 }
 .reg_form h2{
     text-align: center;
@@ -328,6 +328,7 @@ header ul li ul li a{
 .reg_form a:hover{
     margin-left: 75px;
 }
+
 /*
     input
 */
@@ -353,6 +354,15 @@ header ul li ul li a{
 }
 .input_form button{
     width: 40%;
+}
+/*
+    reg error
+ */
+.reg_form .error{
+    text-align: center;
+    color: red;
+    font-weight: 900;
+    font-size:1.1em;
 }
 
 

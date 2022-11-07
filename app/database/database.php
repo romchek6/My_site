@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once 'connect.php';
 
     function error_Db($query){
@@ -10,16 +11,7 @@
         }
         return true;
     }
-    $data =[
-    'admin' =>'1',
-    'user_login' =>'vasyana',
-    'user_email' =>'vasyana@gmail.com',
-    'user_password' =>'123456',
-    ];
-    $param = [
-        'admin' =>0,
-        'user_password'=> 444
-    ];
+
 //    Получение данных со всех строк
     function select_All_String($table,$param){
         global $pdo;
@@ -64,10 +56,10 @@
             }
         }
         $query = $pdo->prepare($sql);
-        $query->execute();
+        $query->execute($param);
         error_Db($query);
         return $query->fetch();
-    }
+}
 //    Запись
     function insert($table,$param){
         global $pdo;
@@ -88,8 +80,9 @@
         $query = $pdo->prepare($sql);
         $query->execute($param);
         error_Db($query);
+        return $pdo->lastInsertId();
     }
-//    Обновление
+//    Обновление записи по id
     function update($table, $id ,$param)
     {
         global $pdo;
@@ -108,7 +101,7 @@
         $query->execute($param);
         error_Db($query);
     }
-//    Обновление
+//    Удаление записи по id
     function delete($table , $id){
         global $pdo;
         $sql = "DELETE FROM users WHERE id_user = $id";
@@ -117,13 +110,8 @@
         error_Db($query);
     }
 
-//  update('users',3,$param);
-    delete('users', 4);
-    ?>
 
-<pre>
-  <?php
 
-  ?>
-</pre>
+
+
 

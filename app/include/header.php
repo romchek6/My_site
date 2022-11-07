@@ -1,3 +1,7 @@
+<?php
+    include_once 'path.php';
+    include_once 'app/database/database.php'
+?>
 <header class="container-fluid">
     <div class="container">
         <div class="row">
@@ -12,14 +16,27 @@
                     <li><a href="#"><i class="fa-solid fa-address-card"></i> О нас</a></li>
                     <li><a href="#"><i class="fa-brands fa-servicestack"></i> Услуги</a></li>
                     <li>
-                        <a href="#">
-                            <i class="fa fa-user"></i>
-                            Кабинет
-                        </a>
-                        <ul>
-                            <li><a href="<?= INPUT_URL ?>">Админ панель</a></li>
-                            <li><a href="reg.php">Выход</a></li>
-                        </ul>
+                        <?php
+                            if($_SESSION['id_user']){?>
+                                <a href="/">
+                                    <i class="fa fa-user"></i>
+                                    <?= $_SESSION['user_login'] ?>
+                                </a>
+                                <ul>
+                                    <?php
+                                        if($_SESSION['admin'] === '1'){?>
+                                            <li><a href="#">Админ панель</a></li>
+                                        <?php  }
+                                    ?>
+                                    <li><a href="app/controllers/exit.php">Выход</a></li>
+                                </ul>
+                            <?php } else { ?>
+                                <a href="<?= INPUT_URL ?>">
+                                    <i class="fa fa-user"></i>
+                                    Войти
+                                </a>
+                            <?php  }
+                        ?>
                     </li>
                 </ul>
             </nav>

@@ -1,5 +1,6 @@
 <?php
     include_once 'path.php';
+    include_once 'app/controllers/users.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,7 +33,7 @@
 <div class="input_form">
   <div class="container">
     <h2 class="">Вход</h2>
-    <form action="input.html" method="post" class="row justify-content-center">
+    <form action="input.php" method="post" class="row justify-content-center">
       <div class="mb-3 col-12 col-md-4">
         <label for="formGroupExampleInput" class="form-label">Логин</label>
         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Логин">
@@ -44,7 +45,7 @@
       </div>
       <div class="w-100"></div>
       <div class="mb-3 col-12 col-md-4">
-        <button type="submit" class=" btn btn-secondary">Вход</button>
+        <button type="submit" class="btn btn-secondary" name="button-input">Вход</button>
         <a href="reg.php">Регистрация</a>
       </div>
     </form>

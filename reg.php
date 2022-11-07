@@ -1,5 +1,6 @@
 <?php
     include_once 'path.php';
+    include_once 'app/controllers/users.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -34,38 +35,44 @@
 <div class="reg_form">
   <div class="container">
     <h2 class="">Регистрация</h2>
-    <form action="reg.html" method="post" class="row justify-content-center">
+    <form action="reg.php" method="post" class="row justify-content-center">
       <div class="mb-3 col-12 col-md-4">
         <label for="formGroupExampleInput" class="form-label">Логин</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Логин">
+        <input type="text" name="login" class="form-control" id="formGroupExampleInput" value="<?= $login ?>" placeholder="Логин">
       </div>
       <div class="w-100"></div>
       <div class="mb-3 col-12 col-md-4">
         <label for="exampleInputEmail1" class="form-label">Email</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="<?= $email ?>" aria-describedby="emailHelp" placeholder="Email">
       </div>
       <div class="w-100"></div>
       <div class="mb-3 col-12 col-md-4">
         <label for="exampleInputPassword1" class="form-label">Пароль</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
       </div>
       <div class="w-100"></div>
       <div class="mb-3 col-12 col-md-4">
         <label for="exampleInputPassword2" class="form-label">Подтвердите пароль</label>
-        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Подтвердите пароль">
+        <input type="password" name="password_confirm" class="form-control" id="exampleInputPassword2" placeholder="Подтвердите пароль">
       </div>
       <div class="w-100"></div>
       <div class="mb-3 col-12 col-md-4">
-        <button type="submit" class=" btn btn-secondary">Зарегистрироваться</button>
+        <button type="submit" class=" btn btn-secondary" name="button-reg">Зарегистрироваться</button>
         <a href="input.php">Вход</a>
       </div>
+        <div class="w-100"></div>
+        <div class="mb-3 col-12 col-md-4 error">
+            <?= $error_Message ?>
+        </div>
     </form>
   </div>
 </div>
 <!--reg end-->
 
 <!-- footer -->
-<?php include_once 'app/include/footer.php' ?>
+<?php include_once
+    'app/include/footer.php'
+?>
 <!-- footer end -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
