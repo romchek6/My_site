@@ -1,0 +1,390 @@
+*{
+    font-family: 'Comfortaa', cursive;
+    /*font-family: 'Kaushan Script', cursive;*/
+    /*font-family: 'Montserrat', sans-serif;*/
+
+}
+html,h1,h2,h3,h4,h5,h6{
+    color: #5c5b5b;
+}
+body{
+    background: #e8e8e8;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/*
+    Header
+ */
+header{
+    background: #158585;
+    height: 70px;
+}
+header *{
+    color: #ffffff;
+}
+header h1{
+    margin-top: 11px;
+}
+header h1 a:hover{
+    color: #ffffff;
+}
+header ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    float: right;
+}
+header ul li {
+    float: left;
+    position: relative;
+}
+header ul li a {
+    display: block;
+    font-size: 1.2rem;
+    padding: 21px;
+    height: 70px;
+}
+header ul li a:hover {
+    transition: 1s;
+    color:#ffffff;
+    background: #0b4646;
+}
+header ul li ul{
+    background-color: #989898;
+    position: absolute;
+    top: 70px;
+    right: 0px;
+    width: 180px;
+    z-index: 888888;
+    display: none;
+}
+header ul li:hover ul{
+    display: block;
+}
+header ul li ul li{
+    width: 100%;
+}
+header ul li ul li a{
+    font-size: 1.1rem ;
+}
+/*
+    carousel
+ */
+.carousel_title{
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+}
+.carousel-inner , .carousel-item{
+    border-radius: 5px;
+}
+.carousel-caption h5{
+    font-size: 2rem;
+    font-weight: 500;
+    background: rgba(0, 0, 0, 0.5);
+    max-width: 100%;
+    padding: 0.3em;
+    /*opacity: 0.5;*/
+    color: white;
+}
+.carousel-caption h5 a{
+    opacity: 1;
+    color: white;
+}
+.carousel-caption-hack{
+    position: absolute;
+    right: 0%;
+    left: 0%;
+    bottom: 0.05rem;
+    padding-top:0rem;
+    padding-bottom:0rem;
+    text-align: center;
+    width: 100%;
+}
+.carousel-caption h5 a:hover{
+    text-decoration: underline;
+}
+/*
+    main
+ */
+.main_content h2{
+    margin: 20px 0;
+}
+.main_content .post{
+    margin-bottom: 3em;
+}
+.main_content .post_text{
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+.main_content .post_text h3{
+    padding: 10px 0;
+}
+.main_content .post_text h3 a:hover{
+    text-decoration: underline;
+    color: #5c5b5b;
+}
+.main_content .post_text i{
+    padding-right: 10px;
+}
+/*
+   sidebar
+ */
+.search{
+    margin-top: 78.39px;
+}
+.sidebar .section{
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+
+}
+.sidebar .section h3{
+    margin: 20px 0;
+}
+.sidebar .topics ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border-top:1px solid #e0e0e0;
+}
+.sidebar .topics ul li a{
+    display: block;
+    padding: 15px 0px;
+    border-bottom:1px solid #e0e0e0;
+    transition: all 0.5s;
+    font-weight: 500;
+    font-size: 1.2em;
+    color: #5c5b5b;
+}
+.sidebar .topics ul li a:hover{
+    padding-left: 15px;
+}
+/*
+    footer
+*/
+.footer{
+    background:#303036;
+    color: #d3d3d3;
+    position: relative;
+}
+.footer .section{
+    padding: 22px;
+}
+.footer h4{
+    color: white;
+}
+.footer .about .contact span{
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+.footer .about .socials a{
+    border: 1px solid gray;
+    width: 45px;
+    height: 41px;
+    padding-top: 5px;
+    margin-right: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.3em;
+    border-radius: 5px;
+    transition: all 0.5s;
+    color: white;
+}
+.footer .about .socials a:hover{
+    border :1px solid white;
+}
+.footer .links ul a{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    transition: all 0.5s;
+    color: white;
+}
+.footer .links ul a:hover{
+    margin-left: 15px;
+}
+.footer .contact-form .contact-input{
+    background: #272727;
+    color: #bebdbd;
+    width: 100%;
+    margin-bottom: 10px;
+    line-height: 1.5rem;
+    padding: .9rem 1.4rem;
+    border:none;
+}
+.footer .contact-form .contact-input:focus{
+    background: #1a1a1a;
+}
+.footer .contact-form .contact-btn{
+    float: right;
+    font-size:1.1em;
+}
+.footer .footer-bottom{
+    background: #343a40;
+    color: #686868;
+    height: 50px;
+    /*width: 100%;*/
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: -40px;
+    left: 0px;
+    padding-top: 14px;
+}
+/*
+    Single_post
+*/
+.single_post{
+    margin-bottom: 20px;
+}
+.single_post .info{
+   margin: 20px 0;
+}
+.single_post .info i{
+    display: inline-block;
+    padding-right: 20px;
+}
+.single_post .single_post_text a{
+    text-decoration: underline;
+}
+.single_post .single_post_text a:hover{
+    text-decoration: none;
+    color: #414141;
+}
+/*
+    input reg (v2)
+*/
+.reg2_form{
+    margin-top: 28vh;
+}
+.reg2_form h2{
+    text-align: center;
+    margin: 20px 0;
+}
+.reg2_form input{
+    height: 2.64rem;
+}
+.reg2_form a{
+    transition: all 0.5s;
+    margin-left: 70px;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #5c5b5b;
+    text-decoration: underline;
+}
+.reg2_form a:hover{
+    margin-left: 75px;
+}
+.input2_form{
+    /*margin-top: 18%;*/
+    margin-top: 38vh;
+}
+.input2_form h2{
+    text-align: center;
+    margin: 20px 0;
+}
+.input2_form a{
+    transition: all 0.5s;
+    margin-left: 60px;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #5c5b5b;
+    text-decoration: underline;
+}
+.input2_form a:hover{
+    margin-left:65px;
+}
+.input2_form button{
+    width: 40%;
+}
+/*
+    reg
+ */
+
+.reg_form h2{
+    text-align: center;
+    margin: 20px 0;
+}
+.reg_form input{
+    height: 2.70em;
+}
+.reg_form a{
+    transition: all 0.5s;
+    margin-left: 70px;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #5c5b5b;
+    text-decoration: underline;
+}
+.reg_form a:hover{
+    margin-left: 75px;
+}
+
+/*
+    input
+*/
+
+.input_form{
+    margin-top: 115px;
+    margin-bottom: 90px;
+}
+.input_form h2{
+    text-align: center;
+    margin: 20px 0;
+}
+.input_form a{
+    transition: all 0.5s;
+    margin-left: 60px;
+    font-weight: 900;
+    font-size: 1.2em;
+    color: #5c5b5b;
+    text-decoration: underline;
+}
+.input_form a:hover{
+    margin-left:65px;
+}
+.input_form button{
+    width: 40%;
+}
+/*
+    error
+ */
+.reg_form .error{
+    text-align: center;
+    color: red;
+    font-weight: 900;
+    font-size:1.2em;
+}
+.input_form .error {
+    text-align: center;
+    color: red;
+    font-weight: 900;
+    font-size: 1.2em;
+    margin-top: 24px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

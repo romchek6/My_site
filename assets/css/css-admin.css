@@ -1,0 +1,211 @@
+*{
+    font-family: 'Comfortaa', cursive;
+    /*font-family: 'Kaushan Script', cursive;*/
+    /*font-family: 'Montserrat', sans-serif;*/
+
+}
+html,h1,h2,h3,h4,h5,h6{
+    color: #5c5b5b;
+}
+body{
+    background: #e8e8e8;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+/*
+    Header
+ */
+header{
+    background: #158585;
+    height: 70px;
+}
+header *{
+    color: #ffffff;
+}
+header h1{
+    margin-top: 11px;
+}
+header h1 a:hover{
+    color: #ffffff;
+}
+header ul{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    float: right;
+}
+header ul li {
+    float: left;
+    position: relative;
+}
+header ul li a {
+    display: block;
+    font-size: 1.2rem;
+    padding: 21px;
+    height: 70px;
+}
+header ul li a:hover {
+    transition: 1s;
+    color:#ffffff;
+    background: #0b4646;
+}
+header ul li ul{
+    background-color: #989898;
+    position: absolute;
+    top: 70px;
+    right: 0px;
+    width: 180px;
+    z-index: 888888;
+    display: none;
+}
+header ul li:hover ul{
+    display: block;
+}
+header ul li ul li{
+    width: 100%;
+}
+header ul li ul li a{
+    font-size: 1.1rem ;
+}
+/*
+    footer
+*/
+.footer{
+    background:#303036;
+    color: #d3d3d3;
+    position: relative;
+}
+.footer .section{
+    padding: 22px;
+}
+.footer h3{
+    color: white;
+}
+.footer .about .contact span{
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+.footer .about .socials a{
+    border: 1px solid gray;
+    width: 45px;
+    height: 41px;
+    padding-top: 5px;
+    margin-right: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 1.3em;
+    border-radius: 5px;
+    transition: all 0.5s;
+    color: white;
+}
+.footer .about .socials a:hover{
+    border :1px solid white;
+}
+.footer .links ul a{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    transition: all 0.5s;
+    color: white;
+}
+.footer .links ul a:hover{
+    margin-left: 15px;
+}
+.footer .contact-form .contact-input{
+    background: #272727;
+    color: #bebdbd;
+    width: 100%;
+    margin-bottom: 10px;
+    line-height: 1.5rem;
+    padding: .9rem 1.4rem;
+    border:none;
+}
+.footer .contact-form .contact-input:focus{
+    background: #1a1a1a;
+}
+.footer .contact-form .contact-btn{
+    float: right;
+    font-size:1.1em;
+}
+.footer .footer-bottom{
+    background: #343a40;
+    color: #686868;
+    height: 50px;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: -40px;
+    left: 0px;
+    padding-top: 14px;
+}
+/*
+    sidebar
+ */
+.sidebar{
+    /*background: #686868;*/
+    background: #158585;
+    margin: 1rem 0;
+    /*min-height: 600px;*/
+    /*max-height: 600px;*/
+    height: 600px;
+}
+.sidebar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+}
+.sidebar ul li{
+    padding: 20px;
+    border-bottom: 1px solid #424242;
+}
+.sidebar ul li a{
+    display: block;
+    transition: all 0.5s;
+
+}
+.sidebar ul li a:hover{
+    padding-left: 5px;
+    color: white;
+}
+/*
+    posts
+*/
+.posts{
+    margin: 16px 0 16px 110px;
+    padding-right: 0;
+}
+.posts .scroll{
+    /*overflow-y:scroll;*/
+}
+.posts .title_table h2{
+    margin: 20px 0 ;
+}
+.posts .title_table div{
+    font-weight: 900;
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #000000;
+    border-left:1px solid #000000 ;
+
+}
+.posts .button{
+    padding-left: 12px;
+}
+.posts .post div{
+    border-bottom: 1px solid #c5c5c5;
+    text-align: left;
+    padding: 20px;
+}
+.posts .post .red{
+   color: red;
+}
+.posts .post .green{
+    color: darkgreen;
+}
+/*
+   post_create
+ */
