@@ -1,5 +1,6 @@
 <?php
     include '../../path.php';
+    include '../../app/controllers/admin.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -42,30 +43,30 @@
                 <h2 class="col-12">Добавить пользователя</h2>
             </div>
             <div class="row add_post">
-                <form action="">
+                <form action="create.php" method="post">
                     <div class="col-12">
-                        <input type="text" name="login" class="form-control" id="formGroupExampleInput" value="<?= $login ?>" placeholder="Логин">
+                        <input type="text" name="user_login" class="form-control" id="formGroupExampleInput" value="<?= $user_login ?>" placeholder="Логин">
                     </div>
                     <div class="w-100"></div>
                     <div class="mt-4 col-12 ">
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="<?= $email ?>" aria-describedby="emailHelp" placeholder="Email">
+                        <input type="email" name="user_email" class="form-control" id="exampleInputEmail1" value="<?= $user_email ?>" aria-describedby="emailHelp" placeholder="Email">
                     </div>
                     <div class="w-100"></div>
                     <div class="mt-4 col-12 ">
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
+                        <input type="password" name="user_password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
                     </div>
                     <div class="w-100"></div>
                     <div class="mt-4 col-12 ">
                         <input type="password" name="password_confirm" class="form-control" id="exampleInputPassword2" placeholder="Подтвердите пароль">
                     </div>
                     <div class="w-100"></div>
-                    <select class="form-select col mt-4" aria-label="Default select example">
-                        <option selected value="1">User</option>
-                        <option value="2">Admin</option>
+                    <select class="form-select col mt-4" name="select" aria-label="Default select example">
+                        <option selected value="0">User</option>
+                        <option value="1">Admin</option>
                     </select>
                     <div class="w-100"></div>
                     <div class="mt-4 col-12 ">
-                        <button type="submit" class=" btn btn-primary" name="button-reg">Зарегистрировать</button>
+                        <button type="submit" class=" btn btn-primary" name="button-create-user">Зарегистрировать</button>
                     </div>
                     <div class="w-100"></div>
                     <div class="mt-4 col-12  error">

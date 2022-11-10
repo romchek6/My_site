@@ -1,9 +1,7 @@
 <?php
     include_once 'app/database/database.php';
 
-    $status_Submit = false;
     $error_Message = '';
-
 
     if ($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['button-reg'])){
 
@@ -12,6 +10,9 @@
             $email = trim($_POST['email']);
             $password = trim($_POST['password']);
             $password_confirm = trim($_POST['password_confirm']);
+
+//            $_SESSION['login'] = $login;
+//            $_SESSION['email'] = $email;
 
 
             if($login ===''||$email ===''||$password ===''||$password_confirm===''){
@@ -39,6 +40,8 @@
                 $user = select_One_String('users',['id_user' => $id]);
 
                 data_User($user);
+//                unset($_SESSION['login']);
+//                unset($_SESSION['email']);
 
             }
 
@@ -49,19 +52,21 @@
     }
     if ($_SERVER['REQUEST_METHOD']==='POST' && isset($_POST['button-input'])) {
 
-        $login = $_POST['login'];
+        $login1 = $_POST['login'];
         $password = $_POST['password'];
+
+//        $_SESSION['login'] = $login1;
 
         $i = 0;
 
-        if (stripos($login,'@')){
-            $check = select_One_String('users',['user_email'=>$login]);
+        if (stripos($login1,'@')){
+            $check = select_One_String('users',['user_email'=>$login1]);
         }else {
-            $check = select_One_String('users',['user_login'=>$login]);
+            $check = select_One_String('users',['user_login'=>$login1]);
             $i++;
         }
 
-        if($login===''||$password===''){
+        if($login1===''||$password===''){
             $error_Message = 'Заполните все поля';
         }else{
             if($i === 0 && !isset($check['user_email'])){
@@ -71,12 +76,12 @@
             }else if(!password_verify($password, $check['user_password'])){
                 $error_Message = 'Неверный пароль';
             }else{
-
+//                unset($_SESSION['login']);
                 data_User($check);
 
             }
         }
 
     } else{
-        $login = '';
+        $login1 = '';
     }

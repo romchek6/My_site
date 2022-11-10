@@ -36,10 +36,10 @@
   <div class="container">
     <h2 class="">Регистрация</h2>
     <form action="reg.php" method="post" class="row justify-content-center">
-      <div class="mb-3 col-12 col-md-4">
-        <label for="formGroupExampleInput" class="form-label">Логин</label>
-        <input type="text" name="login" class="form-control" id="formGroupExampleInput" value="<?= $login ?>" placeholder="Логин">
-      </div>
+        <div class="mb-3 col-12 col-md-4">
+            <label for="formGroupExampleInput" class="form-label">Логин</label>
+            <input type="text" name="login" class="form-control" id="formGroupExampleInput" value="<?= $login ?>" placeholder="Логин">
+        </div>
       <div class="w-100"></div>
       <div class="mb-3 col-12 col-md-4">
         <label for="exampleInputEmail1" class="form-label">Email</label>
@@ -57,7 +57,7 @@
       </div>
       <div class="w-100"></div>
       <div class="mb-3 col-12 col-md-4">
-        <button type="submit" class=" btn btn-secondary" name="button-reg">Зарегистрироваться</button>
+        <button type="submit"  class=" btn btn-secondary" name="button-reg">Зарегистрироваться</button>
         <a href="log.php">Вход</a>
       </div>
         <div class="w-100"></div>

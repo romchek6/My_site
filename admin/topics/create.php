@@ -1,5 +1,6 @@
 <?php
-include '../../path.php';
+    include '../../path.php';
+    include '../../app/controllers/admin.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -42,15 +43,19 @@ include '../../path.php';
                 <h2 class="col-12">Добавить категорию</h2>
             </div>
             <div class="row add_post">
-                <form action="">
+                <form action="create.php" method="post">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="Название категории" aria-label="Заголовок вашей статьи">
+                        <input type="text" value="<?= $topic_name?>" name="topic_name" class="form-control"  placeholder="Название категории" aria-label="Заголовок вашей статьи" required>
                     </div>
                     <div class="col mt-4">
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="10" placeholder="Описание категории..."></textarea>
+                        <textarea class="form-control" name="topic_description"  id="exampleFormControlTextarea1" rows="10" placeholder="Описание категории..." required><?= $topic_description?></textarea>
                     </div>
                     <div class="col mt-4">
-                        <button type="submit" class="btn btn-primary">Создать категорию</button>
+                        <button type="submit" name="button-create-topic" class="btn btn-primary">Создать категорию</button>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="mt-3 col-12 col-md-4 error">
+                        <?= $error_Message ?>
                     </div>
                 </form>
             </div>

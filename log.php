@@ -36,7 +36,7 @@
     <form action="log.php" method="post" class="row justify-content-center">
       <div class="mb-3 col-12 col-md-4">
         <label for="formGroupExampleInput" class="form-label">Почта или логин</label>
-          <input type="text" name="login" class="form-control" value="<?= $login ?>" id="formGroupExampleInput" placeholder="Почта или логин">
+          <input type="text" name="login" class="form-control" value="<?= $login1 ?>" id="formGroupExampleInput" placeholder="Почта или логин">
       </div>
       <div class="w-100"></div>
       <div class="mb-3 col-12 col-md-4">
