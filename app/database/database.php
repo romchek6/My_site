@@ -96,7 +96,7 @@
             }
             $i++;
         }
-        $sql = "UPDATE $table SET " . $mask  ."  WHERE id_user = $id ";
+        $sql = "UPDATE $table SET " . $mask  ."  WHERE id = $id ";
         $query = $pdo->prepare($sql);
         $query->execute($param);
         error_Db($query);
@@ -104,13 +104,13 @@
 //    Удаление записи по id
     function delete($table , $id){
         global $pdo;
-        $sql = "DELETE FROM users WHERE id_user = $id";
+        $sql = "DELETE FROM users WHERE id = $id";
         $query = $pdo->prepare($sql);
         $query->execute();
         error_Db($query);
     }
     function data_User($string){
-        $_SESSION['id_user'] = $string['id_user'];
+        $_SESSION['id_user'] = $string['id'];
         $_SESSION['admin'] = $string['admin'];
         $_SESSION['user_login'] = $string['user_login'];
         $_SESSION['user_email'] = $string['user_email'];

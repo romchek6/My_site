@@ -1,6 +1,6 @@
 <?php
     include '../../path.php';
-    include '../../app/controllers/topics.php'
+    include '../../app/controllers/topics.php';
 ?>
 <!doctype html>
 <html lang="en">
@@ -40,20 +40,26 @@
                 <a href="<?= INDEX_URL . '/admin/topics/index.php' ?>" class="col-2 btn btn-warning">Управление</a>
             </div>
             <div class="row title_table">
-                <h2 class="col-12">Управление категориями</h2>
-                <div class=" col-1">ID</div>
-                <div class=" col-5">Название</div>
-                <div class=" col-4">Управление</div>
+                <h2 class="col-12">Обновить категорию</h2>
             </div>
-            <div class="scroll">
-                <?php  for($i = 0;$i< count($topics);$i++){?>
-                <div class="row post">
-                    <div class="id col-1"><?= $i+1 ?></div>
-                    <div class="title col-5"><?=$topics[$i]['topic_name'] ?></div>
-                    <div class="green col-2"><a href="edit.php?id=<?=$topics[$i]['id']?>">Edit</a></div>
-                    <div class="red col-2"><a href="#">Delete</a></div>
-                </div>
-                <?php   }  ?>
+            <div class="row add_post">
+                <form action="edit.php" method="post">
+                    <div class="col">
+                        <input type="hidden" value="<?= $id?>" name="id" >
+                    </div>
+                    <div class="col ">
+                        <input type="text" value="<?= $topic_name?>" name="topic_name" class="form-control"  placeholder="Название категории" aria-label="Заголовок вашей статьи" required>
+                    </div>
+                    <div class="col mt-4">
+                        <textarea class="form-control" name="topic_description"  id="exampleFormControlTextarea1" rows="10" placeholder="Описание категории..." required><?=$topic_description?></textarea>
+                    </div>
+                    <div class="col mt-4">
+                        <button type="submit" name="button-update-topic" class="btn btn-primary">Обновить</button>
+                    </div>
+                    <div class="mt-3 col-12 col-md-4 error">
+                        <?= $error_Message ?>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

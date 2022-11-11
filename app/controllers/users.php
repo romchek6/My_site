@@ -37,7 +37,7 @@
                 ];
 
                 $id = insert('users',$data_reg);
-                $user = select_One_String('users',['id_user' => $id]);
+                $user = select_One_String('users',['id' => $id]);
 
                 data_User($user);
 //                unset($_SESSION['login']);
