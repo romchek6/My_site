@@ -51,9 +51,14 @@
                     <div class="id col-1"><?= $i+1 ?></div>
                     <div class="title col-5"><?=$topics[$i]['topic_name'] ?></div>
                     <div class="green col-2"><a href="edit.php?id=<?=$topics[$i]['id']?>">Edit</a></div>
-                    <div class="red col-2"><a href="#">Delete</a></div>
+                    <div class="red col-2"><a href="edit.php?delete_id=<?=$topics[$i]['id']?>">Delete</a></div>
                 </div>
                 <?php   }  ?>
+                <div class="mt-3 col-12 col-md-4 error">
+                    <?= $_SESSION['error'];
+                    unset($_SESSION['error']);
+                    ?>
+                </div>
             </div>
         </div>
     </div>

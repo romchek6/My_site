@@ -53,7 +53,6 @@
                     <div class="col mt-4">
                         <button type="submit" name="button-create-topic" class="btn btn-primary">Создать категорию</button>
                     </div>
-                    <div class="w-100"></div>
                     <div class="mt-3 col-12 col-md-4 error">
                         <?= $error_Message ?>
                     </div>

@@ -1,5 +1,7 @@
 <?php
     include_once 'path.php';
+    include 'app/database/database.php';
+    $topics = select_All_String('topics',null);
 ?>
 <!doctype html>
 <html lang="en">
@@ -70,14 +72,11 @@
       </div>
 
       <div class="section topics">
-        <h3>Темы</h3>
+        <h3>Категории</h3>
         <ul>
-          <li><a href="#">Мотивация</a></li>
-          <li><a href="#">Наука</a></li>
-          <li><a href="#">Биография</a></li>
-          <li><a href="#">Факты</a></li>
-          <li><a href="#">Програмирование</a></li>
-          <li><a href="#">Компьютеры</a></li>
+            <?php foreach ($topics as $key => $value){ ?>
+                <li><a href="#"><?= $value['topic_name']?></a></li>
+            <?php }?>
         </ul>
       </div>
     </div>

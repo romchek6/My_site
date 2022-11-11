@@ -1,5 +1,7 @@
 <?php
     include_once 'path.php';
+    include 'app/database/database.php';
+    $topics = select_All_String('topics',null);
 ?>
 <!doctype html>
 <html lang="en">
@@ -116,63 +118,6 @@
                 </div>
             </div>
 
-            <div class="post row">
-                <div class="post_img col-12 col-md-4">
-                    <img src="assets/images/image2carousel.jpg" alt="post" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="#">Статья по эйфелеву башню</a>
-                    </h3>
-                    <i class="far fa-user"> Автор</i>
-                    <i class="fa-regular fa-calendar-days"> Дата</i>
-                    <p class="preview-text">
-                        струна, приют, принц, аккомпанемент, ртуть,
-                        лицо, строгий, образование, отступать, японец
-                        ложить, колун, гнев, высочество, исправлять
-                        компетентный, негатив, престол, изменять, консилиум
-                    </p>
-                </div>
-            </div>
-
-            <div class="post row">
-                <div class="post_img col-12 col-md-4">
-                    <img src="assets/images/image2carousel.jpg" alt="post" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="#">Статья по эйфелеву башню</a>
-                    </h3>
-                    <i class="far fa-user"> Автор</i>
-                    <i class="fa-regular fa-calendar-days"> Дата</i>
-                    <p class="preview-text">
-                        струна, приют, принц, аккомпанемент, ртуть,
-                        лицо, строгий, образование, отступать, японец
-                        ложить, колун, гнев, высочество, исправлять
-                        компетентный, негатив, престол, изменять, консилиум
-                    </p>
-                </div>
-            </div>
-
-            <div class="post row">
-                <div class="post_img col-12 col-md-4">
-                    <img src="assets/images/image2carousel.jpg" alt="post" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="#">Статья по эйфелеву башню</a>
-                    </h3>
-                    <i class="far fa-user"> Автор</i>
-                    <i class="fa-regular fa-calendar-days"> Дата</i>
-                    <p class="preview-text">
-                        струна, приют, принц, аккомпанемент, ртуть,
-                        лицо, строгий, образование, отступать, японец
-                        ложить, колун, гнев, высочество, исправлять
-                        компетентный, негатив, престол, изменять, консилиум
-                    </p>
-                </div>
-            </div>
-
         </div>
         <!-- sidebar -->
         <div class="sidebar col-md-3 col-12">
@@ -184,14 +129,11 @@
             </div>
 
             <div class="section topics">
-                <h3>Темы</h3>
+                <h3>Категории</h3>
                 <ul>
-                    <li><a href="#">Мотивация</a></li>
-                    <li><a href="#">Наука</a></li>
-                    <li><a href="#">Биография</a></li>
-                    <li><a href="#">Факты</a></li>
-                    <li><a href="#">Програмирование</a></li>
-                    <li><a href="#">Компьютеры</a></li>
+                    <?php foreach ($topics as $key => $value){ ?>
+                    <li><a href="#"><?= $value['topic_name']?></a></li>
+                    <?php }?>
                 </ul>
             </div>
         </div>

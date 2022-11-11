@@ -4,7 +4,7 @@
 <div class="sidebar col-2">
             <ul>
                 <li>
-                    <a href="<?= INDEX_URL . '/admin/posts/index.php' ?>">Записи</a>
+                    <a href="<?= INDEX_URL . '/admin/posts/index.php' ?>">Статьи</a>
                 </li>
                 <li>
                     <a href="<?= INDEX_URL . '/admin/topics/index.php' ?>">Категории</a>

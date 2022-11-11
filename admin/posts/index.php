@@ -1,5 +1,6 @@
 <?php
     include '../../path.php';
+    include '../../app/controllers/posts.php'
 ?>
 <!doctype html>
 <html lang="en">
@@ -39,41 +40,30 @@
                 <a href="<?= INDEX_URL . '/admin/posts/index.php' ?>" class="col-2 btn btn-warning">Управление</a>
             </div>
             <div class="row title_table">
-                <h2 class="col-12">Управление постами</h2>
+                <h2 class="col-12">Управление статьями</h2>
                 <div class=" col-1">ID</div>
-                <div class=" col-5">Название</div>
+                <div class=" col-4">Название</div>
                 <div class=" col-2">Author</div>
-                <div class=" col-2">Управление</div>
+                <div class=" col-2">Категория</div>
+                <div class=" col-3">Управление</div>
             </div>
             <div class="scroll">
                 <div class="row post">
-                    <div class="id col-1">1</div>
-                    <div class="title col-5">Статья</div>
-                    <div class="author col-2">Админ</div>
-                    <div class="green col-2"><a href="">Edit</a></div>
-                    <div class="red col-2"><a href="">Delete</a></div>
+                    <?php foreach ($posts as $key=>$value){ ?>
+                        <div class="id col-1"><?= $key+1?></div>
+                        <div class="title col-4"><?= $value['title']?></div>
+                        <div class="author col-2"><?= $value['id_user']?></div>
+                        <div class="author col-2"><?= $value['id_topic']?></div>
+                        <div class="green col-1"><a href="">Edit</a></div>
+                        <div class="red col-1"><a href="">Delete</a></div>
+                        <?php if($value['status']){ ?>
+                            <div class="status col-1"><a href="">unpublish</a></div>
+                        <?php }else{ ?>
+                            <div class="status col-1"><a href="">publish</a></div>
+                        <?php } ?>
+                    <?php } ?>
                 </div>
-                <div class="row post">
-                    <div class="id col-1">1</div>
-                    <div class="title col-5">Статья</div>
-                    <div class="author col-2">Админ</div>
-                    <div class="green col-2"><a href="">Edit</a></div>
-                    <div class="red col-2"><a href="">Delete</a></div>
-                </div>
-                <div class="row post">
-                    <div class="id col-1">1</div>
-                    <div class="title col-5">Статья</div>
-                    <div class="author col-2">Админ</div>
-                    <div class="green col-2"><a href="">Edit</a></div>
-                    <div class="red col-2"><a href="">Delete</a></div>
-                </div>
-                <div class="row post">
-                    <div class="id col-1">1</div>
-                    <div class="title col-5">Статья</div>
-                    <div class="author col-2">Админ</div>
-                    <div class="green col-2"><a href="">Edit</a></div>
-                    <div class="red col-2"><a href="">Delete</a></div>
-                </div>
+
             </div>
         </div>
     </div>
