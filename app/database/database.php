@@ -2,6 +2,12 @@
     session_start();
     require_once 'connect.php';
 
+    function tt($a){
+        ?><pre><?php
+        print_r($a);
+        ?></pre> <?php
+    }
+
     function error_Db($query){
         $error= $query->errorInfo();
 
@@ -109,6 +115,7 @@
         $query->execute();
         error_Db($query);
     }
+//    Создание сессий после входа или регистрации
     function data_User($string){
         $_SESSION['id'] = $string['id'];
         $_SESSION['admin'] = $string['admin'];
@@ -121,6 +128,28 @@
         } else{
             header('location:'. INDEX_URL);
         }
+
+    }
+
+//    Выборка записей с автором в админку
+    function select_All_From_Posts_With_Users($table1 , $table2, $table3 ){
+        global $pdo;
+
+        $sql ="SELECT 
+        t1.id,
+        t1.title,
+        t1.img,
+        t1.content,
+        t1.status,        
+        t1.date_created,        
+        t2.user_login,
+        t3.topic_name
+        FROM $table1 AS t1 JOIN $table2 AS t2 JOIN $table3 AS t3 ON t1.id_user = t2.id AND t1.id_topic = t3.id ";
+
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        error_Db($query);
+        return $query->fetchAll();
 
     }
 

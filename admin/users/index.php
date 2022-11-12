@@ -1,5 +1,8 @@
 <?php
-include '../../path.php';
+    include '../../path.php';
+    include '../../app/database/database.php';
+
+    $users = select_All_String('users',null);
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,7 +32,7 @@ include '../../path.php';
 <!-- header end -->
 
 <!-- admin -->
-<div class="container">
+<div class=" index_posts container-fluid">
     <div class="row">
         <?php include_once '../../app/include/sidebar-admin.php'?>
         <div class="posts col-9">
@@ -41,19 +44,26 @@ include '../../path.php';
             <div class="row title_table">
                 <h2 class="col-12">Управление пользователями</h2>
                 <div class=" col-1">ID</div>
-                <div class=" col-3">Логин</div>
+                <div class=" col-4">Логин</div>
                 <div class=" col-4">Email</div>
-                <div class=" col-2">Роль</div>
+                <div class=" col-1">Роль</div>
                 <div class=" col-2">Управление</div>
             </div>
             <div class="scroll">
                 <div class="row post">
-                    <div class="id col-1">1</div>
-                    <div class="title col-3">Bogdan</div>
-                    <div class="author col-4">Bogdan@gmail.com</div>
-                    <div class="author col-2">Admin</div>
-                    <div class="green col-1"><a href="">Edit</a></div>
-                    <div class="red col-1"><a href="">Delete</a></div>
+                    <?php foreach ($users as $key => $value) { ?>
+                        <div class="id col-1"><?= $key+1  ?></div>
+                        <div class="title col-4"><?= $value['user_login']  ?></div>
+                        <div class="author col-4"><?= $value['user_email']  ?></div>
+                        <div class="author col-1"><?php
+                            if($value['admin'] ==='1'){?>
+                                Admin
+                            <?php } else {?>
+                                User
+                            <?php } ?></div>
+                        <div class="green col-1"><a href="">Edit</a></div>
+                        <div class="red col-1"><a href="">Delete</a></div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

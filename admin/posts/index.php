@@ -30,7 +30,7 @@
 <!-- header end -->
 
 <!-- admin -->
-<div class="container">
+<div class="index_posts container-fluid">
     <div class="row">
        <?php include_once '../../app/include/sidebar-admin.php'?>
         <div class="posts col-9">
@@ -52,9 +52,9 @@
                     <?php foreach ($posts as $key=>$value){ ?>
                         <div class="id col-1"><?= $key+1?></div>
                         <div class="title col-4"><?= $value['title']?></div>
-                        <div class="author col-2"><?= $value['id_user']?></div>
-                        <div class="author col-2"><?= $value['id_topic']?></div>
-                        <div class="green col-1"><a href="">Edit</a></div>
+                        <div class="author col-2"><?= $value['user_login']?></div>
+                        <div class="author col-2"><?= $value['topic_name']?></div>
+                        <div class="green col-1"><a href="edit.php?id=<?=$value['id']?>">Edit</a></div>
                         <div class="red col-1"><a href="">Delete</a></div>
                         <?php if($value['status']){ ?>
                             <div class="status col-1"><a href="">unpublish</a></div>

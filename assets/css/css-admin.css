@@ -174,8 +174,11 @@ header ul li ul li a{
 /*
     posts
 */
+.index_posts{
+    padding: 0 40px;
+}
 .posts{
-    margin: 16px 0 16px 110px;
+    margin: 16px 0 16px 40px;
     padding-right: 0;
 }
 .posts .scroll{

@@ -30,7 +30,7 @@
 <!-- header end -->
 
 <!-- admin -->
-<div class="container">
+<div class="index_posts container-fluid">
     <div class="row">
         <?php include_once '../../app/include/sidebar-admin.php'?>
         <div class="posts col-9">
@@ -42,14 +42,14 @@
             <div class="row title_table">
                 <h2 class="col-12">Управление категориями</h2>
                 <div class=" col-1">ID</div>
-                <div class=" col-5">Название</div>
+                <div class=" col-7">Название</div>
                 <div class=" col-4">Управление</div>
             </div>
             <div class="scroll">
                 <?php  for($i = 0;$i< count($topics);$i++){?>
                 <div class="row post">
                     <div class="id col-1"><?= $i+1 ?></div>
-                    <div class="title col-5"><?=$topics[$i]['topic_name'] ?></div>
+                    <div class="title col-7"><?=$topics[$i]['topic_name'] ?></div>
                     <div class="green col-2"><a href="edit.php?id=<?=$topics[$i]['id']?>">Edit</a></div>
                     <div class="red col-2"><a href="edit.php?delete_id=<?=$topics[$i]['id']?>">Delete</a></div>
                 </div>

@@ -3,8 +3,10 @@
 
     $error_Message = '';
 
-    $posts = select_All_String('posts',null);
+//    $posts = select_All_String('posts',null);
     $topics = select_All_String('topics',null);
+    $posts = select_All_From_Posts_With_Users('posts','users','topics');
+
 
 
     //    Создание категории
@@ -38,11 +40,11 @@
             ];
 
             $id = insert('posts',$data_post_create);
-            $error_Message = 'Пост создан';
             $title = '';
             $content = '';
             $topic = '';
             $path = '';
+            header('location:'.INDEX_URL.'/admin/posts/index.php');
         }
 
 
@@ -58,43 +60,85 @@
     if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['id'])){
 
         $id = $_GET['id'];
-        $topics = select_One_String('topics',['id'=>$id]);
-        $topic_name = $topics['topic_name'];
-        $topic_description = $topics['topic_description'];
+        $post = select_One_String('posts',['id'=>$id]);
+        $title = $post['title'];
+        $content = $post['content'];
+        $img = $post['img'];
+        $topic2 = select_One_String('topics',['id'=>$post['id_topic']]);
 
     }
-    if($_SERVER['REQUEST_METHOD'] ==='POST' && isset($_POST['button-update-topic'])){
 
-        $topic_name = $_POST['topic_name'];
-        $topic_description = $_POST['topic_description'];
+    if($_SERVER['REQUEST_METHOD'] ==='POST' && isset($_POST['button-update-post'])){
+
+        $title = $_POST['title'];
+        $content = $_POST['content'];
+        $topic = $_POST['topic'];
         $id = $_POST['id'];
 
-        if($topic_name ===''||$topic_description ===''){
-            $error_Message = 'Заполните все поля';
-        }else{
-            $data_topic_update =[
-                'topic_name' =>$topic_name,
-                'topic_description' =>$topic_description
-            ];
 
-            update('topics', $id ,$data_topic_update);
-            header('location:'.INDEX_URL.'/admin/topics/index.php' );
+        $path = 'app/img_post/' . time() . $_FILES['img']['name'];
+        if($_POST['status']==='on'){
+            $status = 1;
+        }else $status = 0;
+
+        if($title ===''||$content ===''|| $topic === ''){
+            $error_Message = 'Заполните все поля';
+        }else if(strlen($title)<5){
+            $error_Message = 'Название статьи должно быть не менее 5 символов';
+        }else if(strlen($content)<100){
+            $error_Message = 'Минимальная длина статьи 100 символов';
+        }else {
+           if(!$_FILES['img']['name']){
+               $data_post_update = [
+                   'id_user' => $_SESSION['id'],
+                   'title' => $title,
+                   'content' => $content,
+                   'status' => $status,
+                   'id_topic' => $topic
+               ];
+
+               update('posts',$id ,$data_post_update);
+               $title = '';
+               $content = '';
+               $topic = '';
+               $path = '';
+               header('location:' . INDEX_URL . '/admin/posts/index.php');
+           }  else{
+               if(!move_uploaded_file($_FILES['img']['tmp_name'] , '../../'. $path)){
+                   $error_Message = 'Ошибка загрузки картинки';
+               }
+               $data_post_update = [
+                   'id_user' => $_SESSION['id'],
+                   'title' => $title,
+                   'content' => $content,
+                   'img' => $path,
+                   'status' => $status,
+                   'id_topic' => $topic
+               ];
+
+               update('posts',$id ,$data_post_update);
+               $title = '';
+               $content = '';
+               $topic = '';
+               $path = '';
+               header('location:' . INDEX_URL . '/admin/posts/index.php');
+           }
 
         }
 
     }
 
-    //    Удаление категории
-
-    if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['delete_id'])){
-        $id = $_GET['delete_id'];
-        $topic = select_One_String('topics',['id'=>$id]);
-        $topic_name = $topic['topic_name'];
-        delete('topics',$id);
-        $_SESSION['error'] = "Категория $topic_name успешно удалена";
-        header('location:'.INDEX_URL.'/admin/topics/index.php');
-
-    }
+//    //    Удаление категории
+//
+//    if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['delete_id'])){
+//        $id = $_GET['delete_id'];
+//        $topic = select_One_String('topics',['id'=>$id]);
+//        $topic_name = $topic['topic_name'];
+//        delete('topics',$id);
+//        $_SESSION['error'] = "Категория $topic_name успешно удалена";
+//        header('location:'.INDEX_URL.'/admin/topics/index.php');
+//
+//    }
 
 
 
