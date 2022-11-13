@@ -40,8 +40,6 @@
                 $user = select_One_String('users',['id' => $id]);
 
                 data_User($user);
-//                unset($_SESSION['login']);
-//                unset($_SESSION['email']);
 
             }
 
@@ -54,8 +52,6 @@
 
         $login1 = $_POST['login'];
         $password = $_POST['password'];
-
-//        $_SESSION['login'] = $login1;
 
         $i = 0;
 
@@ -76,7 +72,7 @@
             }else if(!password_verify($password, $check['user_password'])){
                 $error_Message = 'Неверный пароль';
             }else{
-//                unset($_SESSION['login']);
+
                 data_User($check);
 
             }

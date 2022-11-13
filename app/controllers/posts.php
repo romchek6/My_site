@@ -9,14 +9,14 @@
 
 
 
-    //    Создание категории
+    //    Создание статьи
 
     if ($_SERVER['REQUEST_METHOD'] ==='POST' && isset($_POST['button-create-post'])){
 
         $title = $_POST['title'];
         $content = $_POST['content'];
         $topic = $_POST['topic'];
-        $path = 'app/img_post/' . time() . $_FILES['img']['name'];
+        $path =  ROTH_PATH . '/assets/images/images_post/' . time(). "-" . $_FILES['img']['name'];
         if($_POST['status']==='on'){
             $status = 1;
         }else $status = 0;
@@ -27,7 +27,9 @@
             $error_Message = 'Название статьи должно быть не менее 5 символов';
         }else if(strlen($content)<100){
             $error_Message = 'Минимальная длина статьи 100 символов';
-        }else if(!move_uploaded_file($_FILES['img']['tmp_name'] , '../../'. $path)){
+        }else if(strpos($_FILES['img']['type'] ,'image')===false){
+            $error_Message = 'Файл не является изображением';
+        }else if(!move_uploaded_file($_FILES['img']['tmp_name'] ,$path)){
             $error_Message = 'Ошибка загрузки картинки';
         }else{
             $data_post_create =[
@@ -76,7 +78,7 @@
         $id = $_POST['id'];
 
 
-        $path = 'app/img_post/' . time() . $_FILES['img']['name'];
+        $path = 'assets/images/images_post/' . time() . $_FILES['img']['name'];
         if($_POST['status']==='on'){
             $status = 1;
         }else $status = 0;
@@ -128,17 +130,26 @@
 
     }
 
-//    //    Удаление категории
-//
-//    if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['delete_id'])){
-//        $id = $_GET['delete_id'];
-//        $topic = select_One_String('topics',['id'=>$id]);
-//        $topic_name = $topic['topic_name'];
-//        delete('topics',$id);
-//        $_SESSION['error'] = "Категория $topic_name успешно удалена";
-//        header('location:'.INDEX_URL.'/admin/topics/index.php');
-//
-//    }
+    if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['delete_id'])){
+        $id = $_GET['delete_id'];
+        delete('posts',$id);
+        header('location:'.INDEX_URL.'/admin/posts/index.php');
+
+    }
+    if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['publish_id'])){
+        $id = $_GET['publish_id'];
+        $post = select_One_String('posts',['id'=>$id]);
+
+        if ($post['status']!=='1'){
+            $status = ['status'=>1];
+        }else{
+            $status = ['status'=>0];
+        }
+
+        update('posts',$id,$status);
+        header('location:'.INDEX_URL.'/admin/posts/index.php');
+
+    }
 
 
 

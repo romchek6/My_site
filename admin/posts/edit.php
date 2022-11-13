@@ -54,8 +54,14 @@
                         <textarea class="form-control" id="editor" rows="10" name="content" placeholder="Содержимое статьи..."><?=$content ?></textarea>
                     </div>
                     <div class="input-group col mt-4">
-                        <input type="file" name="img"  class="form-control" id="inputGroupFile02">
+                        <input type="file" name="img"  class="form-control" id="uploadImage">
                         <label class="input-group-text" for="inputGroupFile02">Загрузка</label>
+                    </div>
+                    <div class="col mt-4">
+                        <img id="result">
+                    </div>
+                    <div class="col mt-4">
+                        <img src="<?='../../'. $img ?>" alt="post_image">
                     </div>
                     <select class="form-select col mt-4" name="topic" aria-label="Default select example">
                         <option selected value="<?= $topic2['id']?>" ><?= $topic2['topic_name']?></option>

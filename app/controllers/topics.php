@@ -70,10 +70,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['delete_id'])){
         $id = $_GET['delete_id'];
-        $topic = select_One_String('topics',['id'=>$id]);
-        $topic_name = $topic['topic_name'];
         delete('topics',$id);
-        $_SESSION['error'] = "Категория $topic_name успешно удалена";
         header('location:'.INDEX_URL.'/admin/topics/index.php');
 
     }

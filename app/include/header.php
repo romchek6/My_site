@@ -17,7 +17,7 @@
                     <li><a href="#"><i class="fa-brands fa-servicestack"></i> Услуги</a></li>
                     <li>
                         <?php
-                            if($_SESSION['id_user']){?>
+                            if($_SESSION['id']){?>
                                 <a href="/">
                                     <i class="fa fa-user"></i>
                                     <?= $_SESSION['user_login'] ?>

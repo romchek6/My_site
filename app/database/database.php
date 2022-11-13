@@ -110,7 +110,7 @@
 //    Удаление записи по id
     function delete($table , $id){
         global $pdo;
-        $sql = "DELETE FROM $table WHERE id = $id";
+        $sql = "DELETE FROM $table WHERE id = $id ";
         $query = $pdo->prepare($sql);
         $query->execute();
         error_Db($query);

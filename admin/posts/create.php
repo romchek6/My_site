@@ -51,8 +51,11 @@
                             <textarea class="form-control" id="editor" rows="10" value="<?=$content ?>" name="content" placeholder="Содержимое статьи..."></textarea>
                         </div>
                         <div class="input-group col mt-4">
-                            <input type="file" name="img" class="form-control" id="inputGroupFile02">
+                            <input type="file" name="img" class="form-control" id="uploadImage">
                             <label class="input-group-text" for="inputGroupFile02">Загрузка</label>
+                        </div>
+                        <div class="col mt-4">
+                            <img id="result" alt="Катинка для статьи">
                         </div>
                         <select class="form-select col mt-4" name="topic" aria-label="Default select example">
                             <option selected>Выберите категорию</option>
@@ -82,7 +85,7 @@
 <!-- footer -->
 <?php include_once '../../app/include/footer-admin.php' ?>
 <!-- footer end -->
-
+<script src="../../assets/js/img.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <!--визуальный редактор к текстовому полю-->
 <script src="https://cdn.ckeditor.com/ckeditor5/35.2.0/classic/ckeditor.js"></script>

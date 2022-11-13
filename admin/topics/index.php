@@ -1,6 +1,7 @@
 <?php
     include '../../path.php';
-    include '../../app/controllers/topics.php'
+    include '../../app/controllers/topics.php';
+    $type = 'категорию';
 ?>
 <!doctype html>
 <html lang="en">
@@ -46,12 +47,12 @@
                 <div class=" col-4">Управление</div>
             </div>
             <div class="scroll">
-                <?php  for($i = 0;$i< count($topics);$i++){?>
-                <div class="row post">
-                    <div class="id col-1"><?= $i+1 ?></div>
-                    <div class="title col-7"><?=$topics[$i]['topic_name'] ?></div>
-                    <div class="green col-2"><a href="edit.php?id=<?=$topics[$i]['id']?>">Edit</a></div>
-                    <div class="red col-2"><a href="edit.php?delete_id=<?=$topics[$i]['id']?>">Delete</a></div>
+                <?php  foreach ($topics as $key=> $value){?>
+                <div class="row post" >
+                    <div class="id col-1"><?= $key+1 ?></div>
+                    <div class="title col-7"><?=$value['topic_name'] ?></div>
+                    <div class="green col-2"><a href="edit.php?id=<?=$value['id']?>">Edit</a></div>
+                    <div class="red col-2" onclick="deleteKat(<?=$value['id']?>,'<?=$value['topic_name']?>','<?= $type ?>')">Delete</div>
                 </div>
                 <?php   }  ?>
                 <div class="mt-3 col-12 col-md-4 error">
@@ -68,7 +69,7 @@
 <!-- footer -->
 <?php include_once '../../app/include/footer-admin.php' ?>
 <!-- footer end -->
-
+<script src="../../assets/js/deletePost.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>-->
 <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>-->
