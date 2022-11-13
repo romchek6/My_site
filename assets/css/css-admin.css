@@ -207,7 +207,11 @@ header ul li ul li a{
     text-align: center;
 }
 .posts .post .red{
-   color: red;
+    color: red;
+    cursor: pointer;
+}
+.posts .post .red:hover{
+    color: #0d6efd;
 
 }
 .posts .post .green{
@@ -252,6 +256,7 @@ header ul li ul li a{
     cursor:pointer;
     float: bottom;
 }
+
 .close:hover {
     color: white;
     background: #0b4646;

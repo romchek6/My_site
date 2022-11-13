@@ -153,6 +153,49 @@
 
     }
 
+//    Выборка записей на главную
+
+    function select_All_From_Posts_With_Status_On($table1 , $table2 ){
+        global $pdo;
+
+        $sql ="SELECT 
+            t1.id,
+            t1.title,
+            t1.img,
+            t1.content,
+            t1.status,        
+            t1.date_created,        
+            t2.user_login          
+            FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id WHERE t1.status = 1 ";
+
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        error_Db($query);
+        return $query->fetchAll();
+
+    }
+
+    function select_One_From_Posts_With_Status_On($table1 , $table2 , $id){
+        global $pdo;
+
+        $sql ="SELECT 
+                t1.id,
+                t1.title,
+                t1.img,
+                t1.content,
+                t1.status,        
+                t1.date_created,        
+                t2.user_login          
+                FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id WHERE t1.id = $id ";
+
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        error_Db($query);
+        return $query->fetchAll();
+
+    }
+
+
 
 
 

@@ -10,7 +10,7 @@
                 </p>
                 <div class="contact">
                     <span><i class="fa-solid fa-phone"></i> 8-951-888-78-88</span>
-                    <span><i class="fa-solid fa-envelope"></i> 8-951-888-78-88</span>
+                    <span><i class="fa-solid fa-envelope"></i> myblog@gmail.com</span>
                 </div>
                 <div class="socials">
                     <a href="#"><i class="fa-brands fa-vk"></i></a>

@@ -26,8 +26,7 @@
                                     <?php
                                         if($_SESSION['admin'] === '1'){?>
                                             <li><a href="<?= INDEX_URL.'/admin/posts/index.php' ?>">Админ панель</a></li>
-                                        <?php  }
-                                    ?>
+                                        <?php  } ?>
                                     <li><a href="<?= LOGOUT_URL ?>">Выход</a></li>
                                 </ul>
                             <?php } else { ?>

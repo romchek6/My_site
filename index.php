@@ -2,6 +2,7 @@
     include_once 'path.php';
     include 'app/database/database.php';
     $topics = select_All_String('topics',null);
+    $posts = select_All_From_Posts_With_Status_On('posts','users');
 ?>
 <!doctype html>
 <html lang="en">
@@ -43,7 +44,7 @@
         <!--        </div>-->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/images/image1carousel.jpg" class="d-block w-100" height="400" alt="...">
+                <img src="assets/images/images_post/1668349974-nwjA1JrKdJA.jpg" class="d-block w-100" height="400" alt="...">
                 <div class="carousel-caption-hack carousel-caption d-none d-md-block">
                     <h5><a href="#">111</a></h5>
                 </div>
@@ -79,45 +80,27 @@
         <!-- main  -->
         <div class="main_content col-md-9 col-12">
             <h2>Последние публикации</h2>
-
-            <div class="post row">
-                <div class="post_img col-12 col-md-4">
-                    <img src="assets/images/Screenshot_1.png" alt="post" class="img-thumbnail">
+            <?php foreach ($posts as $key => $value) {?>
+                <div class="post row">
+                    <div class="post_img col-12 col-md-4">
+                        <img src="<?= INDEX_URL .'/'. $value['img']?>" alt="post" class="img-thumbnail">
+                    </div>
+                    <div class="post_text col-12 col-md-8">
+                        <h3>
+                            <a href="<?= INDEX_URL.'/single_post.php?id='.$value['id']?>"><?=mb_substr($value['title'], 0,120,'UTF-8') . '...'?></a>
+                        </h3>
+                        <div class="author_date row">
+                            <i class="far fa-user col-1"></i>
+                            <p class="col-3"><?=$value['user_login']?></p>
+                            <i class="fa-regular fa-calendar-days col-1"></i>
+                            <p class="col-5"><?=$value['date_created']?></p>
+                        </div>
+                        <div class="preview-text">
+                            <?= mb_substr($value['content'], 0,150,'UTF-8') . '...'   ?>
+                        </div>
+                    </div>
                 </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="#">Статья по эйфелеву башню</a>
-                    </h3>
-                    <i class="far fa-user"> Автор</i>
-                    <i class="fa-regular fa-calendar-days"> Дата</i>
-                    <p class="preview-text">
-                        струна, приют, принц, аккомпанемент, ртуть,
-                        лицо, строгий, образование, отступать, японец
-                        ложить, колун, гнев, высочество, исправлять
-                        компетентный, негатив, престол, изменять, консилиум
-                    </p>
-                </div>
-            </div>
-
-            <div class="post row">
-                <div class="post_img col-12 col-md-4">
-                    <img src="assets/images/image2carousel.jpg" alt="post" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="#">Статья по эйфелеву башню</a>
-                    </h3>
-                    <i class="far fa-user"> Автор</i>
-                    <i class="fa-regular fa-calendar-days"> Дата</i>
-                    <p class="preview-text">
-                        струна, приют, принц, аккомпанемент, ртуть,
-                        лицо, строгий, образование, отступать, японец
-                        ложить, колун, гнев, высочество, исправлять
-                        компетентный, негатив, престол, изменять, консилиум
-                    </p>
-                </div>
-            </div>
-
+            <?php }?>
         </div>
         <!-- sidebar -->
         <div class="sidebar col-md-3 col-12">

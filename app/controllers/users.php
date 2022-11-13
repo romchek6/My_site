@@ -1,5 +1,5 @@
 <?php
-    include_once 'app/database/database.php';
+    include 'app/database/database.php';
 
     $error_Message = '';
 
@@ -81,3 +81,5 @@
     } else{
         $login1 = '';
     }
+
+

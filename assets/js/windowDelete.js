@@ -1,4 +1,4 @@
-function deleteKat(id,name,typeq){
+function deleteWindow(id,name,typeq){
 
     let zatemnenie = document.createElement('div');
     let window = document.createElement('div');

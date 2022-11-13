@@ -40,16 +40,19 @@
                 <a href="<?= INDEX_URL . '/admin/users/index.php' ?>" class="col-2 btn btn-warning">Управление</a>
             </div>
             <div class="row title_table">
-                <h2 class="col-12">Добавить пользователя</h2>
+                <h2 class="col-12">Изменить пользователя</h2>
             </div>
             <div class="row add_post">
                 <form action="create.php" method="post">
                     <div class="col-12">
-                        <input type="text" name="login" class="form-control" id="formGroupExampleInput" value="<?= $user_login ?>" placeholder="Логин">
+                        <input type="hidden" name="id" class="form-control" value="<?= $id ?>" placeholder="Логин">
+                    </div>
+                    <div class="col-12">
+                        <input type="text" name="login" class="form-control" id="formGroupExampleInput" value="<?= $login ?>" placeholder="Логин">
                     </div>
                     <div class="w-100"></div>
                     <div class="mt-4 col-12 ">
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="<?= $user_email ?>" aria-describedby="emailHelp" placeholder="Email">
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="<?= $email ?>" aria-describedby="emailHelp" placeholder="Email">
                     </div>
                     <div class="w-100"></div>
                     <div class="mt-4 col-12 ">
@@ -61,12 +64,12 @@
                     </div>
                     <div class="w-100"></div>
                     <select class="form-select col mt-4" name="select" aria-label="Default select example">
-                        <option selected value="0">User</option>
-                        <option value="1">Admin</option>
+                        <option selected value="<?= $admin ?>"><?=($admin === '1') ?"Admin" : "User" ?></option>
+                        <option value="<?=($admin === '0') ? 1 : 0 ?>"><?=($admin === '0') ?"Admin" : "User" ?></option>
                     </select>
                     <div class="w-100"></div>
                     <div class="mt-4 col-12 ">
-                        <button type="submit" class=" btn btn-primary" name="button-create-user">Создать</button>
+                        <button type="submit" class=" btn btn-primary" name="button-update-user">Изменить</button>
                     </div>
                     <div class="w-100"></div>
                     <div class="mt-4 col-12  error">

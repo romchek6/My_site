@@ -7,16 +7,14 @@
     $topics = select_All_String('topics',null);
     $posts = select_All_From_Posts_With_Users('posts','users','topics');
 
-
-
     //    Создание статьи
 
     if ($_SERVER['REQUEST_METHOD'] ==='POST' && isset($_POST['button-create-post'])){
 
-        $title = $_POST['title'];
-        $content = $_POST['content'];
+        $title = trim($_POST['title']);
+        $content =trim($_POST['content']);
         $topic = $_POST['topic'];
-        $path =  ROTH_PATH . '/assets/images/images_post/' . time(). "-" . $_FILES['img']['name'];
+        $path =  'assets/images/images_post/' . time(). "-" . $_FILES['img']['name'];
         if($_POST['status']==='on'){
             $status = 1;
         }else $status = 0;
@@ -29,7 +27,7 @@
             $error_Message = 'Минимальная длина статьи 100 символов';
         }else if(strpos($_FILES['img']['type'] ,'image')===false){
             $error_Message = 'Файл не является изображением';
-        }else if(!move_uploaded_file($_FILES['img']['tmp_name'] ,$path)){
+        }else if(!move_uploaded_file($_FILES['img']['tmp_name'] ,'../../'.$path)){
             $error_Message = 'Ошибка загрузки картинки';
         }else{
             $data_post_create =[

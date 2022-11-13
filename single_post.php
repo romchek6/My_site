@@ -2,6 +2,8 @@
     include_once 'path.php';
     include 'app/database/database.php';
     $topics = select_All_String('topics',null);
+    $id = $_GET['id'];
+    $posts = select_One_From_Posts_With_Status_On('posts','users',$id);
 ?>
 <!doctype html>
 <html lang="en">
@@ -34,32 +36,25 @@
 <div class="container">
   <div class="content row">
     <!-- main  -->
-    <div class="main-content col-md-9 col-12">
-      <h2>Заголовок статьи</h2>
+    <div class="main_content col-md-9 col-12">
 
-      <div class="single_post row">
-        <div class="post_img col-12 ">
-          <img src="assets/images/image1carousel.jpg" alt="post" class="img-thumbnail">
-        </div>
-        <div class ="info">
-          <i class="far fa-user"> Автор</i>
-          <i class="fa-regular fa-calendar-days"> Дата</i>
-        </div>
-        <div class="single_post_text col-12 ">
-          <h3>Заголовок 3</h3>
-          <p>Lorem <a href="#">ipsum </a> dolor sit amet, consectetur adipisicing elit. Accusantium alias aliquid aut illum laboriosam laudantium, perferendis placeat possimus quisquam voluptate.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto atque cumque distinctio esse eveniet ex fugiat ipsum laborum magni provident, quaerat quam quia recusandae repellendus totam voluptatem. Quasi, veritatis?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias aliquid aut illum laboriosam laudantium, perferendis placeat possimus quisquam voluptate.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto atque cumque distinctio esse eveniet ex fugiat ipsum laborum magni provident, quaerat quam quia recusandae repellendus totam voluptatem. Quasi, veritatis?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias aliquid aut illum laboriosam laudantium, perferendis placeat possimus quisquam voluptate.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto atque cumque distinctio esse eveniet ex fugiat ipsum laborum magni provident, quaerat quam quia recusandae repellendus totam voluptatem. Quasi, veritatis?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias aliquid aut illum laboriosam laudantium, perferendis placeat possimus quisquam voluptate.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto atque cumque distinctio esse eveniet ex fugiat ipsum laborum magni provident, quaerat quam quia recusandae repellendus totam voluptatem. Quasi, veritatis?</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias aliquid aut illum laboriosam laudantium, perferendis placeat possimus quisquam voluptate.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto atque cumque distinctio esse eveniet ex fugiat ipsum laborum magni provident, quaerat quam quia recusandae repellendus totam voluptatem. Quasi, veritatis?</p>
-        </div>
-      </div>
-
+        <?php foreach ($posts as $value) { ?>
+          <h2><?=$value['title'] ?></h2>
+          <div class="single_post row">
+            <div class="post_img col-12 ">
+              <img src="<?= INDEX_URL .'/'.$value['img']?>" alt="post" class="img-thumbnail">
+            </div>
+              <div class="author_date row">
+                  <i class="far fa-user col-1"></i>
+                  <p class="col-3"><?=$value['user_login']?></p>
+                  <i class="fa-regular fa-calendar-days col-1"></i>
+                  <p class="col-5"><?=$value['date_created']?></p>
+              </div>
+            <div class="single_post_text col-12 ">
+                <?= $value['content'] ?>
+            </div>
+          </div>
+        <?php } ?>
 
     </div>
     <!-- sidebar -->
