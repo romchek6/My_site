@@ -1,6 +1,6 @@
 <?php
     include '../../path.php';
-    include '../../app/controllers/posts.php'
+include '../../app/controllers/posts-admin.php'
 ?>
 <!doctype html>
 <html lang="en">

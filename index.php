@@ -1,8 +1,7 @@
 <?php
     include_once 'path.php';
-    include 'app/database/database.php';
-    $topics = select_All_String('topics',null);
-    $posts = select_All_From_Posts_With_Status_On('posts','users');
+    include 'app/controllers/posts.php';
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -30,35 +29,30 @@
 <!-- header -->
     <?php include_once 'app/include/header.php' ?>
 <!-- header end -->
-
+<?php ?>
 <!-- carousel -->
 <div class="container">
     <div class="row">
-        <h2 class="carousel_title">Лучшие посты</h2>
+        <h2 class="carousel_title">Лучшие статьи</h2>
     </div>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
-        <!--        <div class="carousel-indicators">-->
-        <!--            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
-        <!--            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
-        <!--            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
-        <!--        </div>-->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/images/images_post/1668349974-nwjA1JrKdJA.jpg" class="d-block w-100" height="400" alt="...">
+                <img src="<?= INDEX_URL .'/' .$top_posts[0]['img'] ?>" class="d-block w-100" height="400" alt="...">
                 <div class="carousel-caption-hack carousel-caption d-none d-md-block">
-                    <h5><a href="#">111</a></h5>
+                    <h5><a href="single_post.php?id=<?= $top_posts[0]['id'] ?>"><?= $top_posts[0]['title'] ?></a></h5>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="assets/images/image2carousel.jpg" class="d-block w-100" height="400" alt="...">
+                <img src="<?= INDEX_URL .'/'. $top_posts[1]['img'] ?>" class="d-block w-100" height="400" alt="...">
                 <div class="carousel-caption-hack  carousel-caption d-none d-md-block">
-                    <h5><a href="#">111</a></h5>
+                    <h5><a href="single_post.php?id=<?= $top_posts[1]['id'] ?>"><?= $top_posts[1]['title'] ?></a></h5>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="assets/images/image3carousel.jpeg" class="d-block w-100" height="400" alt="...">
+                <img src="<?= INDEX_URL .'/'. $top_posts[2]['img'] ?>" class="d-block w-100" height="400" alt="...">
                 <div class="carousel-caption-hack  carousel-caption d-none d-md-block">
-                    <h5><a href="#">111</a></h5>
+                    <h5><a href="single_post.php?id=<?= $top_posts[2]['id'] ?>"><?= $top_posts[2]['title'] ?></a></h5>
                 </div>
             </div>
         </div>
@@ -66,7 +60,7 @@
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <button class="-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -79,7 +73,14 @@
     <div class="content row">
         <!-- main  -->
         <div class="main_content col-md-9 col-12">
-            <h2>Последние публикации</h2>
+                <h2 class="">Последние публикации</h2>
+                <div class="sort row">
+                    <p class="col-2.5">Сортировать по:</p>
+                    <a href="index.php?sort=date_created-ASC" class="col-2">По дате &uarr;</a>
+                    <a href="index.php?sort=date_created-DESC" class="col-2">По дате &darr;</a>
+                    <a href="index.php?sort=views-ASC" class="col-2.5">По просмотрам &uarr;</a>
+                    <a href="index.php?sort=views-DESC" class="col-2.5">По просмотрам &darr;</a>
+                </div>
             <?php foreach ($posts as $key => $value) {?>
                 <div class="post row">
                     <div class="post_img col-12 col-md-4">
@@ -90,10 +91,12 @@
                             <a href="<?= INDEX_URL.'/single_post.php?id='.$value['id']?>"><?=mb_substr($value['title'], 0,120,'UTF-8') . '...'?></a>
                         </h3>
                         <div class="author_date row">
-                            <i class="far fa-user col-1"></i>
-                            <p class="col-3"><?=$value['user_login']?></p>
+                            <i class="fa-regular fa-user col-1"></i>
+                            <p class="col-2"><?=$value['user_login']?></p>
                             <i class="fa-regular fa-calendar-days col-1"></i>
-                            <p class="col-5"><?=$value['date_created']?></p>
+                            <p class="col-3"><?=$value['date_created']?></p>
+                            <i class="fa-regular fa-eye col-1"></i>
+                            <p class="col-3"><?=$value['views']?></p>
                         </div>
                         <div class="preview-text">
                             <?= mb_substr($value['content'], 0,150,'UTF-8') . '...'   ?>
@@ -106,7 +109,7 @@
         <div class="sidebar col-md-3 col-12">
             <div class="section search">
                 <h3>Поиск</h3>
-                <form action="index.html" method="post">
+                <form action="search.php" method="post">
                     <input type="text" name="search-term" class="text-input" placeholder="поиск...">
                 </form>
             </div>
@@ -115,11 +118,12 @@
                 <h3>Категории</h3>
                 <ul>
                     <?php foreach ($topics as $key => $value){ ?>
-                    <li><a href="#"><?= $value['topic_name']?></a></li>
+                        <li><a href="search.php?id=<?= $value['id'] ?>"><?= $value['topic_name']?></a></li>
                     <?php }?>
                 </ul>
             </div>
         </div>
+        <!-- sidebar end -->
     </div>
 </div>
 <!-- main end -->

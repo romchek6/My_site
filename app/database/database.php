@@ -163,7 +163,8 @@
             t1.title,
             t1.img,
             t1.content,
-            t1.status,        
+            t1.status,
+            t1.views,
             t1.date_created,        
             t2.user_login          
             FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id WHERE t1.status = 1 ";
@@ -175,6 +176,8 @@
 
     }
 
+//    Выбока 1 записи на синг страницу
+
     function select_One_From_Posts_With_Status_On($table1 , $table2 , $id){
         global $pdo;
 
@@ -183,7 +186,8 @@
                 t1.title,
                 t1.img,
                 t1.content,
-                t1.status,        
+                t1.status,    
+                t1.views,
                 t1.date_created,        
                 t2.user_login          
                 FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id WHERE t1.id = $id ";
@@ -194,6 +198,71 @@
         return $query->fetchAll();
 
     }
+
+//    Выборка трёх лучших постов
+
+    function select_Top_3_posts(){
+        global $pdo;
+
+        $sql = "SELECT * FROM posts ORDER BY views DESC LIMIT 3";
+
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        error_Db($query);
+        return $query->fetchAll();
+    }
+
+//    поиск по сайту
+
+    function search_In_Title_and_Content($table1 , $table2 ,$text){
+        $text = trim(strip_tags(stripcslashes(htmlspecialchars($text))));
+        global $pdo;
+        $sql ="SELECT 
+                t1.id,
+                t1.title,
+                t1.img,
+                t1.content,
+                t1.status,
+                t1.views,
+                t1.date_created,        
+                t2.user_login          
+                FROM $table1 AS t1 
+                JOIN $table2 AS t2 
+                ON t1.id_user = t2.id 
+                WHERE t1.status = 1 
+                AND t1.title LIKE '%$text%'
+                OR t1.content LIKE '%$text%'";
+
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        error_Db($query);
+        return $query->fetchAll();
+
+    }
+    function select_All_From_Posts_With_Status_On_And_Sort($table1 , $table2 , $sort ,$paramSort){
+        global $pdo;
+
+        $sql ="SELECT 
+                t1.id,
+                t1.title,
+                t1.img,
+                t1.content,
+                t1.status,
+                t1.views,
+                t1.date_created,        
+                t2.user_login          
+                FROM $table1 AS t1 
+                JOIN $table2 AS t2 
+                ON t1.id_user = t2.id 
+                ORDER BY $sort $paramSort ";
+
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        error_Db($query);
+        return $query->fetchAll();
+
+    }
+
 
 
 

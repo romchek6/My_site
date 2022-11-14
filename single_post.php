@@ -1,9 +1,7 @@
 <?php
     include_once 'path.php';
-    include 'app/database/database.php';
-    $topics = select_All_String('topics',null);
-    $id = $_GET['id'];
-    $posts = select_One_From_Posts_With_Status_On('posts','users',$id);
+    include 'app/controllers/posts.php';
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -36,7 +34,7 @@
 <div class="container">
   <div class="content row">
     <!-- main  -->
-    <div class="main_content col-md-9 col-12">
+    <div class="main_content col-12">
 
         <?php foreach ($posts as $value) { ?>
           <h2><?=$value['title'] ?></h2>
@@ -46,9 +44,11 @@
             </div>
               <div class="author_date row">
                   <i class="far fa-user col-1"></i>
-                  <p class="col-3"><?=$value['user_login']?></p>
+                  <p class="col-2"><?=$value['user_login']?></p>
                   <i class="fa-regular fa-calendar-days col-1"></i>
-                  <p class="col-5"><?=$value['date_created']?></p>
+                  <p class="col-3"><?=$value['date_created']?></p>
+                  <i class="fa-regular fa-eye col-1"></i>
+                  <p class="col-3"><?=$value['views']?></p>
               </div>
             <div class="single_post_text col-12 ">
                 <?= $value['content'] ?>
@@ -56,24 +56,6 @@
           </div>
         <?php } ?>
 
-    </div>
-    <!-- sidebar -->
-    <div class="sidebar col-md-3 col-12">
-      <div class="section search">
-        <h3>Поиск</h3>
-        <form action="index.php" method="post">
-          <input type="text" name="search-term" class="text-input" placeholder="поиск...">
-        </form>
-      </div>
-
-      <div class="section topics">
-        <h3>Категории</h3>
-        <ul>
-            <?php foreach ($topics as $key => $value){ ?>
-                <li><a href="#"><?= $value['topic_name']?></a></li>
-            <?php }?>
-        </ul>
-      </div>
     </div>
   </div>
 </div>

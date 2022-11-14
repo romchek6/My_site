@@ -23,9 +23,9 @@
             ];
 
             $id = insert('topics',$data_topic_create);
-            $error_Message = 'Категория создана';
             $topic_name = '';
             $topic_description = '';
+            header('location:'.INDEX_URL.'/admin/topics/index.php' );
 
         }
 
@@ -37,9 +37,9 @@
 
 //    Редактирование категории
 
-    if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['id'])){
+    if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['update_id'])){
 
-        $id = $_GET['id'];
+        $id = $_GET['update_id'];
         $topics = select_One_String('topics',['id'=>$id]);
         $topic_name = $topics['topic_name'];
         $topic_description = $topics['topic_description'];

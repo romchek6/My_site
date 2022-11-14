@@ -73,6 +73,16 @@ header ul li ul li a{
 /*
     carousel
  */
+.carousel{
+    height:500px ;
+    overflow: hidden;
+}
+.carousel img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 .carousel_title{
     text-align: center;
     padding: 20px 0;
@@ -96,8 +106,9 @@ header ul li ul li a{
 }
 .carousel-caption-hack{
     position: absolute;
-    right: 0%;
-    left: 0%;
+    top: 430px;
+    right: 0;
+    left: 0;
     bottom: 0.05rem;
     padding-top:0rem;
     padding-bottom:0rem;
@@ -110,20 +121,22 @@ header ul li ul li a{
 /*
     main
  */
-.post_img{
-
+.col-2\.5{
+    width: 22%;
 }
-.author_date{
-
+.sort a:hover{
+    text-decoration: underline;
+    color:  #212529;
 }
 .post_img img {
     width: 100%;
     height: 100%;
-
 }
-
 .main_content h2{
     margin: 20px 0;
+}
+.main_content {
+    min-height: 513px;
 }
 .main_content .post{
     margin-bottom: 3em;
@@ -154,13 +167,22 @@ header ul li ul li a{
     padding: 0;
     float: right;
 }
-.single_post .author_date i::before {
-   padding-right: 15px;
-    float: right;
-}
 .single_post .author_date p{
     padding: 0;
 }
+.single_post .author_date i::before {
+    padding-right: 15px;
+    float: right;
+    padding-top: 5px;
+}
+.post_text .author_date i::before {
+    padding-right: 10px;
+    float: right;
+}
+.single_post .author_date{
+   font-size: 30px;
+}
+
 /*
    sidebar
  */

@@ -43,9 +43,9 @@
 //        $login = '';
 //        $email = '';
     }
-    if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['id'])){
+    if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['update_id'])){
 
-        $id = $_GET['id'];
+        $id = $_GET['update_id'];
         $user = select_One_String('users',['id'=>$id]);
         $login = $user['user_login'];
         $email = $user['user_email'];

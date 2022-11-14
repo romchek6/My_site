@@ -60,7 +60,7 @@
                             <?php } else {?>
                                 User
                             <?php } ?></div>
-                        <div class="green col-1"><a href="edit.php?id=<?=$value['id']?>">Edit</a></div>
+                        <div class="green col-1"><a href="edit.php?update_id=<?=$value['id']?>">Edit</a></div>
                         <div class="red col-1" onclick="deleteWindow(<?=$value['id']?>,'<?=$value['user_login']?>','<?= $type ?>')">Delete</div>
                     <?php } ?>
                 </div>

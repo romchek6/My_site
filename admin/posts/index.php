@@ -1,6 +1,6 @@
 <?php
     include '../../path.php';
-    include '../../app/controllers/posts.php';
+    include '../../app/controllers/posts-admin.php';
     $type ='статью';
 ?>
 <!doctype html>
@@ -55,7 +55,7 @@
                         <div class="title col-4"><?= $value['title']?></div>
                         <div class="author col-2"><?= $value['user_login']?></div>
                         <div class="author col-2"><?= $value['topic_name']?></div>
-                        <div class="green col-1"><a href="edit.php?id=<?=$value['id']?>">Edit</a></div>
+                        <div class="green col-1"><a href="edit.php?update_id=<?=$value['id']?>">Edit</a></div>
                         <div class="red col-1" onclick="deleteWindow(<?=$value['id']?>,'<?=$value['title']?>','<?=$type?>')">Delete</div>
                         <?php if($value['status']){ ?>
                             <div class="status col-1"><a href="edit.php?publish_id=<?=$value['id']?>">unpublish</a></div>

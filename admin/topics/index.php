@@ -51,7 +51,7 @@
                 <div class="row post" >
                     <div class="id col-1"><?= $key+1 ?></div>
                     <div class="title col-7"><?=$value['topic_name'] ?></div>
-                    <div class="green col-2"><a href="edit.php?id=<?=$value['id']?>">Edit</a></div>
+                    <div class="green col-2"><a href="edit.php?update_id=<?=$value['id']?>">Edit</a></div>
                     <div class="red col-2" onclick="deleteWindow(<?=$value['id']?>,'<?=$value['topic_name']?>','<?= $type ?>')">Delete</div>
                 </div>
                 <?php   }  ?>
