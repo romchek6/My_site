@@ -3,9 +3,8 @@
 
     $error_Message = '';
 
-//    $posts = select_All_String('posts',null);
     $topics = select_All_String('topics',null);
-    $posts = select_All_From_Posts_With_Users('posts','users','topics');
+    $posts = select_All_From_Posts_With_Users('posts','users');
 
     //    Создание статьи
 
@@ -13,7 +12,7 @@
 
         $title = trim($_POST['title']);
         $content =trim($_POST['content']);
-        $topic = $_POST['topic'];
+        $topic =trim( $_POST['topic']);
         $path =  'assets/images/images_post/' . time(). "-" . $_FILES['img']['name'];
         if($_POST['status']==='on'){
             $status = 1;
@@ -55,7 +54,7 @@
         $path = '';
     }
 
-    //    Редактирование категории
+    //    Редактирование поста
 
     if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['update_id'])){
 

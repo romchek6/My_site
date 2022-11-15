@@ -1,7 +1,6 @@
 <?php
     include_once 'path.php';
     include 'app/controllers/posts.php';
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -35,7 +34,7 @@
     <div class="content row">
         <!-- main  -->
         <div class="main_content  col-12">
-            <h2>Результаты поиска</h2>
+            <h2>Результаты поиска по тегу: <?= $_GET['topic'] ?></h2>
             <?php if(!$search){ ?>
                 <h2 class="no_search">Ничего не найдено</h2>
             <?php }?>

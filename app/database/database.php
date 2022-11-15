@@ -121,7 +121,7 @@
         $_SESSION['admin'] = $string['admin'];
         $_SESSION['user_login'] = $string['user_login'];
         $_SESSION['user_email'] = $string['user_email'];
-        $_SESSION['date_created'] = $string['date_created'];
+        $_SESSION['date_registr'] = $string['date_registr'];
 
         if($_SESSION['admin']==='1'){
             header('location:'. INDEX_URL . '/admin/posts/index.php');
@@ -132,7 +132,7 @@
     }
 
 //    Выборка записей с автором в админку
-    function select_All_From_Posts_With_Users($table1 , $table2, $table3 ){
+    function select_All_From_Posts_With_Users($table1 , $table2 ){
         global $pdo;
 
         $sql ="SELECT 
@@ -142,9 +142,8 @@
         t1.content,
         t1.status,        
         t1.date_created,        
-        t2.user_login,
-        t3.topic_name
-        FROM $table1 AS t1 JOIN $table2 AS t2 JOIN $table3 AS t3 ON t1.id_user = t2.id AND t1.id_topic = t3.id ";
+        t2.user_login       
+        FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id ";
 
         $query = $pdo->prepare($sql);
         $query->execute();
@@ -155,7 +154,7 @@
 
 //    Выборка записей на главную
 
-    function select_All_From_Posts_With_Status_On($table1 , $table2 ){
+    function select_All_From_Posts_With_Status_On($table1 , $table2 ,$limit ,$offset){
         global $pdo;
 
         $sql ="SELECT 
@@ -167,8 +166,12 @@
             t1.views,
             t1.date_created,        
             t2.user_login          
-            FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id WHERE t1.status = 1 ";
+            FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id WHERE t1.status = 1";
 
+        if(!empty($limit)){
+            $sql = $sql ." LIMIT $limit OFFSET $offset";
+        }
+        
         $query = $pdo->prepare($sql);
         $query->execute();
         error_Db($query);
@@ -191,6 +194,7 @@
                 t1.date_created,        
                 t2.user_login          
                 FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id WHERE t1.id = $id ";
+
 
         $query = $pdo->prepare($sql);
         $query->execute();
@@ -239,7 +243,10 @@
         return $query->fetchAll();
 
     }
-    function select_All_From_Posts_With_Status_On_And_Sort($table1 , $table2 , $sort ,$paramSort){
+
+//    Сортировка постов на главной странице
+
+    function select_All_From_Posts_With_Status_On_And_Sort($table1 , $table2 , $sort ,$paramSort, $limit ,$offset){
         global $pdo;
 
         $sql ="SELECT 
@@ -254,7 +261,40 @@
                 FROM $table1 AS t1 
                 JOIN $table2 AS t2 
                 ON t1.id_user = t2.id 
-                ORDER BY $sort $paramSort ";
+                ORDER BY $sort $paramSort
+                LIMIT $limit 
+                OFFSET $offset
+                ";
+
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        error_Db($query);
+        return $query->fetchAll();
+
+    }
+
+    function count_Rows($table){
+
+        global $pdo;
+        $sql = "SELECT COUNT(*) FROM $table WHERE status = 1";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        error_Db($query);
+        return $query->fetchColumn();
+
+    }
+
+    function select_All_From_Comments_With_Status_On($table1,$table2,$id){
+        global $pdo;
+
+        $sql ="SELECT 
+                t1.id,                
+                t1.status,
+                t2.user_login,                
+                t1.id_post,
+                t1.comment,
+                t1.date_created                               
+                FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id WHERE t1.status = 1 AND t1.id_post = $id ORDER BY date_created DESC ";
 
         $query = $pdo->prepare($sql);
         $query->execute();

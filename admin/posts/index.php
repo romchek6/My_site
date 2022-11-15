@@ -43,18 +43,16 @@
             <div class="row title_table">
                 <h2 class="col-12">Управление статьями</h2>
                 <div class=" col-1">ID</div>
-                <div class=" col-4">Название</div>
-                <div class=" col-2">Author</div>
-                <div class=" col-2">Категория</div>
+                <div class=" col-5">Название</div>
+                <div class=" col-3">Author</div>
                 <div class=" col-3">Управление</div>
             </div>
             <div class="scroll">
                 <div class="row post">
                     <?php foreach ($posts as $key=>$value){ ?>
                         <div class="id col-1"><?= $key+1?></div>
-                        <div class="title col-4"><?= $value['title']?></div>
-                        <div class="author col-2"><?= $value['user_login']?></div>
-                        <div class="author col-2"><?= $value['topic_name']?></div>
+                        <div class="title col-5"><?= $value['title']?></div>
+                        <div class="author col-3"><?= $value['user_login']?></div>
                         <div class="green col-1"><a href="edit.php?update_id=<?=$value['id']?>">Edit</a></div>
                         <div class="red col-1" onclick="deleteWindow(<?=$value['id']?>,'<?=$value['title']?>','<?=$type?>')">Delete</div>
                         <?php if($value['status']){ ?>

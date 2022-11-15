@@ -124,9 +124,16 @@ header ul li ul li a{
 .col-2\.5{
     width: 22%;
 }
+.sort a{
+   margin-bottom: 16px;
+    text-align: center;
+}
 .sort a:hover{
     text-decoration: underline;
     color:  #212529;
+}
+.sort .i{
+    text-decoration: underline;
 }
 .post_img img {
     width: 100%;
@@ -138,8 +145,9 @@ header ul li ul li a{
 .main_content {
     min-height: 513px;
 }
+
 .main_content .post{
-    margin-bottom: 3em;
+    margin-bottom: 1.5em;
 }
 .main_content .post_text{
     background: white;
@@ -154,7 +162,7 @@ header ul li ul li a{
     color: #5c5b5b;
 }
 .main_content .post_text i{
-   padding: 0;
+    padding: 0;
     padding-left: 10px;
 }
 .main_content .post_text .author_date p{
@@ -182,12 +190,29 @@ header ul li ul li a{
 .single_post .author_date{
    font-size: 30px;
 }
-
+.page-link{
+    color:#212529 ;
+}
 /*
    sidebar
  */
-.search{
+.no_sort{
     margin-top: 78.39px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+.search{
+    margin-top: 118.39px;
+}
+.no_sort a{
+    color:  #212529;
+}
+.no_sort a:hover{
+    text-decoration: underline;
+    color:  #212529;
+}
+.search input{
+    width: 100%;
 }
 .sidebar .section{
     background: #ffffff;
@@ -216,6 +241,56 @@ header ul li ul li a{
 }
 .sidebar .topics ul li a:hover{
     padding-left: 15px;
+}
+/*
+    comments
+*/
+.comments h3{
+    text-align: center;
+    margin: 20px 0;
+}
+.comments textarea{
+    resize: none;
+    width: 75%;
+    height: 60px;
+    border: none;
+}
+.comments textarea:hover{
+    border: 1px solid black;
+}
+.comments span{
+    width: 5%;
+}
+.comments button{
+    width: 20%;
+    height: 60px;
+    border: none;
+}
+.comments button:hover{
+    border: 1px solid black;
+}
+.comments .author {
+    background-color: #fff;
+    text-align: center;
+    height: 105px;
+    border: 2px solid black;
+    padding: 0;
+}
+.comments .author p{
+    font-size: 20px;
+    margin: 15px 0;
+}
+.comments .text_comment{
+    background-color: #fff;
+    height: 105px;
+}
+.comments .text_comment p{
+    margin: 18px 0;
+    height: 72px;
+}
+.comment{
+    margin-bottom: 20px;
+    padding: 0;
 }
 /*
     footer

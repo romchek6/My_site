@@ -1,6 +1,10 @@
 <?php
     include_once 'path.php';
+    $page  = isset($_GET['page']) ? $_GET['page'] : 1;
+    $limit = 5;
+    $offset = ($page-1)*$limit;
     include 'app/controllers/posts.php';
+    $total_pages = ceil(count_Rows('posts') / $limit);
 
 ?>
 <!doctype html>
@@ -60,7 +64,7 @@
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
@@ -76,15 +80,31 @@
                 <h2 class="">Последние публикации</h2>
                 <div class="sort row">
                     <p class="col-2.5">Сортировать по:</p>
-                    <a href="index.php?sort=date_created-ASC" class="col-2">По дате &uarr;</a>
-                    <a href="index.php?sort=date_created-DESC" class="col-2">По дате &darr;</a>
-                    <a href="index.php?sort=views-ASC" class="col-2.5">По просмотрам &uarr;</a>
-                    <a href="index.php?sort=views-DESC" class="col-2.5">По просмотрам &darr;</a>
+                    <?php if($_SESSION['press']!==1){ ?>
+                        <a href="index.php?sort=date_created&param=DESC&press=1" class="col-2">По дате &darr;</a>
+                    <?php }else{ ?>
+                        <a href="index.php?no_sort=1" class="col-2 i">По дате &darr;</a>
+                    <?php } ?>
+                    <?php if($_SESSION['press']!==2){ ?>
+                        <a href="index.php?sort=date_created&param=ASC&press=2" class="col-2">По дате &uarr;</a>
+                    <?php }else{ ?>
+                        <a href="index.php?no_sort=1" class="col-2 i">По дате &uarr;</a>
+                    <?php } ?>
+                    <?php if($_SESSION['press']!==3){ ?>
+                        <a href="index.php?sort=views&param=DESC&press=3" class="col-2.5">По просмотрам &darr;</a>
+                    <?php }else{ ?>
+                        <a href="index.php?no_sort=1" class="col-2.5 i">По просмотрам &darr;</a>
+                    <?php } ?>
+                    <?php if($_SESSION['press']!==4){ ?>
+                        <a href="index.php?sort=views&param=ASC&press=4" class="col-2.5">По просмотрам &uarr;</a>
+                    <?php }else{ ?>
+                        <a href="index.php?no_sort=1" class="col-2.5 i">По просмотрам &uarr;</a>
+                    <?php } ?>
                 </div>
             <?php foreach ($posts as $key => $value) {?>
                 <div class="post row">
                     <div class="post_img col-12 col-md-4">
-                        <img src="<?= INDEX_URL .'/'. $value['img']?>" alt="post" class="img-thumbnail">
+                        <a href="<?= INDEX_URL.'/single_post.php?id='.$value['id']?>"><img src="<?= INDEX_URL .'/'. $value['img']?>" alt="post" class="img-thumbnail"></a>
                     </div>
                     <div class="post_text col-12 col-md-8">
                         <h3>
@@ -104,13 +124,17 @@
                     </div>
                 </div>
             <?php }?>
+            <?php include 'app/include/pagination.php'?>
         </div>
         <!-- sidebar -->
         <div class="sidebar col-md-3 col-12">
+            <div class="no_sort">
+<!--                <a href="index.php?no_sort=5">Отменить сортировку</a>-->
+            </div>
             <div class="section search">
                 <h3>Поиск</h3>
                 <form action="search.php" method="post">
-                    <input type="text" name="search-term" class="text-input" placeholder="поиск...">
+                    <input type="text" name="search-term" class="text-input" placeholder="                     Поиск...">
                 </form>
             </div>
 
@@ -118,7 +142,7 @@
                 <h3>Категории</h3>
                 <ul>
                     <?php foreach ($topics as $key => $value){ ?>
-                        <li><a href="search.php?id=<?= $value['id'] ?>"><?= $value['topic_name']?></a></li>
+                        <li><a href="search.php?id_topic=<?= $value['id'] ?>&topic=<?= $value['topic_name']?>"><?= $value['topic_name']?></a></li>
                     <?php }?>
                 </ul>
             </div>
