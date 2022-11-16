@@ -2,6 +2,7 @@
     include '../../path.php';
     include '../../app/controllers/posts-admin.php';
     $type ='статью';
+
 ?>
 <!doctype html>
 <html lang="en">

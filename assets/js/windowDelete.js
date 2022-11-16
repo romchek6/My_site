@@ -11,7 +11,7 @@ function deleteWindow(id,name,typeq){
     zatemnenie.className = "zatemnenie"
     zatemnenie.id ="zatemnenie"
     window.className ="window"
-    text.textContent = "Вы точно хотите удалить " + typeq + ' ' + name + "?"
+    text.textContent = "Вы точно хотите удалить " + typeq + ': ' + name + "?"
     text.className = 'text';
     accept.href = "edit.php?delete_id=" + id
     accept.textContent = 'да'

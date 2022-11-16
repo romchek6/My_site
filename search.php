@@ -1,6 +1,12 @@
 <?php
     include_once 'path.php';
     include 'app/controllers/posts.php';
+    if ($_GET['id_topic']){
+        $total_pages = ceil(count_Rows('posts',['id_topic'=>$_GET['id_topic']]) / $limit);
+    }else{
+        $total_pages = ceil(count_Rows1('posts',$_GET['search-term']) / $limit);
+    }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -34,7 +40,30 @@
     <div class="content row">
         <!-- main  -->
         <div class="main_content  col-12">
-            <h2>Результаты поиска по тегу: <?= $_GET['topic'] ?></h2>
+            <h2>Результаты поиска по тегу: <?= isset($_GET['topic'])?$_GET['topic']:$_POST['search-term'] ?></h2>
+            <div class="sort row">
+                <p class="col-2.5">Сортировать по:</p>
+                <?php if($_SESSION['press']!==1){ ?>
+                    <a href="search.php?<?=$_GET['id_topic']?'id_topic='.$_GET['id_topic'].'&topic='.$_GET['topic']:"search-term=" .$_GET['search-term']?>&sort=date_created&param=DESC&press=1" class="col-2">По дате &darr;</a>
+                <?php }else{ ?>
+                    <a href="search.php?<?=$_GET['id_topic']?'id_topic='.$_GET['id_topic'].'&topic='.$_GET['topic']:"search-term=".$_GET['search-term']?>&no_sort=1&sort=date_created&param=DESC" class="col-2 i">По дате &darr;</a>
+                <?php } ?>
+                <?php if($_SESSION['press']!==2){ ?>
+                    <a href="search.php?<?=$_GET['id_topic']?'id_topic='.$_GET['id_topic'].'&topic='.$_GET['topic']:"search-term=".$_GET['search-term']?>&sort=date_created&param=ASC&press=2" class="col-2">По дате &uarr;</a>
+                <?php }else{ ?>
+                    <a href="search.php?<?=$_GET['id_topic']?'id_topic='.$_GET['id_topic'].'&topic='.$_GET['topic']:"search-term=".$_GET['search-term']?>&no_sort=1&sort=date_created&param=DESC" class="col-2 i">По дате &uarr;</a>
+                <?php } ?>
+                <?php if($_SESSION['press']!==3){ ?>
+                    <a href="search.php?<?=$_GET['id_topic']?'id_topic='.$_GET['id_topic'].'&topic='.$_GET['topic']:"search-term=".$_GET['search-term']?>&sort=views&param=DESC&press=3" class="col-2.5">По просмотрам &darr;</a>
+                <?php }else{ ?>
+                    <a href="search.php?<?=$_GET['id_topic']?'id_topic='.$_GET['id_topic'].'&topic='.$_GET['topic']:"search-term=".$_GET['search-term']?>&no_sort=1&sort=date_created&param=DESC" class="col-2.5 i">По просмотрам &darr;</a>
+                <?php } ?>
+                <?php if($_SESSION['press']!==4){ ?>
+                    <a href="search.php?<?=$_GET['id_topic']?'id_topic='.$_GET['id_topic'].'&topic='.$_GET['topic']:"search-term=".$_GET['search-term']?>&sort=views&param=ASC&press=4" class="col-2.5">По просмотрам &uarr;</a>
+                <?php }else{ ?>
+                    <a href="search.php?<?=$_GET['id_topic']?'id_topic='.$_GET['id_topic'].'&topic='.$_GET['topic']:"search-term=".$_GET['search-term']?>&no_sort=1&sort=date_created&param=DESC" class="col-2.5 i">По просмотрам &uarr;</a>
+                <?php } ?>
+            </div>
             <?php if(!$search){ ?>
                 <h2 class="no_search">Ничего не найдено</h2>
             <?php }?>
@@ -56,13 +85,14 @@
                             <p class="col-3"><?=$value['views']?></p>
                         </div>
                         <div class="preview-text">
-                            <?= mb_substr($value['content'], 0,150,'UTF-8') . '...'   ?>
+                            <?= mb_substr($value['content'], 0,200,'UTF-8') . '...'   ?>
                         </div>
                     </div>
                 </div>
             <?php }?>
         </div>
     </div>
+    <?php include 'app/include/pagination.php'?>
 </div>
 <!-- main end -->
 

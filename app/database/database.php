@@ -110,10 +110,15 @@
 //    Удаление записи по id
     function delete($table , $id){
         global $pdo;
+        if($table ==='posts'){
+            $img = select_One_String($table,['id'=>$id]);
+            unlink('../../'.$img['img']);
+        }
         $sql = "DELETE FROM $table WHERE id = $id ";
         $query = $pdo->prepare($sql);
         $query->execute();
         error_Db($query);
+
     }
 //    Создание сессий после входа или регистрации
     function data_User($string){
@@ -218,7 +223,7 @@
 
 //    поиск по сайту
 
-    function search_In_Title_and_Content($table1 , $table2 ,$text){
+    function search_In_Title_and_Content($table1 , $table2 ,$text,$sort ,$paramSort, $limit ,$offset){
         $text = trim(strip_tags(stripcslashes(htmlspecialchars($text))));
         global $pdo;
         $sql ="SELECT 
@@ -235,7 +240,10 @@
                 ON t1.id_user = t2.id 
                 WHERE t1.status = 1 
                 AND t1.title LIKE '%$text%'
-                OR t1.content LIKE '%$text%'";
+                OR t1.content LIKE '%$text%'
+                ORDER BY $sort $paramSort
+                LIMIT $limit 
+                OFFSET $offset";
 
         $query = $pdo->prepare($sql);
         $query->execute();
@@ -246,7 +254,7 @@
 
 //    Сортировка постов на главной странице
 
-    function select_All_From_Posts_With_Status_On_And_Sort($table1 , $table2 , $sort ,$paramSort, $limit ,$offset){
+    function select_All_From_Posts_With_Status_On_And_Sort($table1 , $table2 , $sort ,$paramSort, $limit ,$offset, $param){
         global $pdo;
 
         $sql ="SELECT 
@@ -261,10 +269,22 @@
                 FROM $table1 AS t1 
                 JOIN $table2 AS t2 
                 ON t1.id_user = t2.id 
-                ORDER BY $sort $paramSort
+                WHERE t1.status = 1";
+
+        if(!empty($param)){
+            foreach ($param as $key=>$value){
+                if(!is_numeric($value)){
+                    $value = "'". $value . "'";
+                }
+                    $sql = $sql . " AND $key = $value";
+
+            }
+        }
+
+        $sql = $sql ." ORDER BY $sort $paramSort
                 LIMIT $limit 
-                OFFSET $offset
-                ";
+                OFFSET $offset";
+
 
         $query = $pdo->prepare($sql);
         $query->execute();
@@ -273,10 +293,23 @@
 
     }
 
-    function count_Rows($table){
+//  Количество записей в табилце с статусом 1
+
+    function count_Rows($table,$param){
 
         global $pdo;
         $sql = "SELECT COUNT(*) FROM $table WHERE status = 1";
+
+        if(!empty($param)){
+            foreach ($param as $key=>$value){
+                if(!is_numeric($value)){
+                    $value = "'". $value . "'";
+                }
+                $sql = $sql . " AND $key = $value";
+
+            }
+        }
+
         $query = $pdo->prepare($sql);
         $query->execute();
         error_Db($query);
@@ -284,12 +317,15 @@
 
     }
 
+//    выборка комментариев с статусом 1
+
     function select_All_From_Comments_With_Status_On($table1,$table2,$id){
         global $pdo;
 
         $sql ="SELECT 
                 t1.id,                
                 t1.status,
+                t1.user_name,
                 t2.user_login,                
                 t1.id_post,
                 t1.comment,
@@ -303,7 +339,28 @@
 
     }
 
+    function count_Rows1($table,$text){
 
+        global $pdo;
+        $sql = "SELECT COUNT(*) FROM $table WHERE status = 1 AND title LIKE '%$text%'
+                OR content LIKE '%$text%'";
+
+//        if(!empty($param)){
+//            foreach ($param as $key=>$value){
+//                if(!is_numeric($value)){
+//                    $value = "'". $value . "'";
+//                }
+//                $sql = $sql . " AND $key = $value";
+//
+//            }
+//        }
+
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        error_Db($query);
+        return $query->fetchColumn();
+
+    }
 
 
 
