@@ -1,5 +1,6 @@
 <?php
     include_once 'path.php';
+    $limit = 5;
     include 'app/controllers/posts.php';
     $total_pages = ceil(count_Rows('posts',null) / $limit);
 ?>
@@ -74,7 +75,6 @@
         <h2 class="">Последние публикации</h2>
         <!-- main  -->
         <div class="main_content col-md-9 col-12">
-<!--                <h2 class="">Последние публикации</h2>-->
                 <div class="sort row">
                     <p class="col-2.5">Сортировать по:</p>
                     <?php if($_SESSION['press']!==1){ ?>
@@ -113,7 +113,20 @@
                             <i class="fa-regular fa-calendar-days col-1"></i>
                             <p class="col-3"><?=$value['date_created']?></p>
                             <i class="fa-regular fa-eye col-1"></i>
-                            <p class="col-3"><?=$value['views']?></p>
+                            <p class="col-1"><?=$value['views']?></p>
+                            <?php
+                                $param=[
+                                    'id_user'=>$_SESSION['id'],
+                                    'id_post'=>$value['id']
+                                ];
+                                $rows = count_Rows_likes('post_likes',$param);
+                                $likes = count_Rows_likes('post_likes',['id_post'=>$value['id']]);
+                            if($rows>0){?>
+                                <i class="fa-solid fa-heart col-1 like"></i>
+                            <?php }else { ?>
+                                <i class="fa-regular fa-heart col-1 like"></i>
+                            <?php } ?>
+                            <div class="col-1"><p id="result"><?= $likes ?></p></div>
                         </div>
                         <div class="preview-text">
                             <?= mb_substr($value['content'], 0,200,'UTF-8') . '...'   ?>
@@ -125,9 +138,6 @@
         </div>
         <!-- sidebar -->
         <div class="sidebar col-md-3 col-12">
-            <div class="no_sort">
-<!--                <a href="index.php?no_sort=5">Отменить сортировку</a>-->
-            </div>
             <div class="section search">
                 <h3>Поиск</h3>
                 <form action="search.php" method="get">

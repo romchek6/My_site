@@ -1,5 +1,6 @@
 <?php
     include_once 'path.php';
+    $limit = 5;
     include 'app/controllers/posts.php';
     if ($_GET['id_topic']){
         $total_pages = ceil(count_Rows('posts',['id_topic'=>$_GET['id_topic']]) / $limit);

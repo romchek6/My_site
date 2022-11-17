@@ -317,20 +317,50 @@
 
     }
 
+    function count_Rows_likes($table,$param){
+
+        global $pdo;
+
+        $sql = "SELECT COUNT(*) FROM $table ";
+
+        if(!empty($param)){
+            $i=0;
+            foreach ($param as $key=>$value){
+                if(!is_numeric($value)){
+                    $value = "'". $value . "'";
+                }
+                if($i===0){
+                    $sql = $sql . " WHERE $key = $value";
+                }else{
+                    $sql = $sql . " AND $key = $value";
+                }
+                $i++;
+            }
+        }
+
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        error_Db($query);
+        return $query->fetchColumn();
+
+
+    }
+
 //    выборка комментариев с статусом 1
 
-    function select_All_From_Comments_With_Status_On($table1,$table2,$id){
+    function select_All_From_Comments_With_Status_On_And_Sort($table1,$table2,$id, $sort ,$paramSort, $limit ,$offset){
         global $pdo;
 
         $sql ="SELECT 
                 t1.id,                
                 t1.status,
+                t1.score,
                 t1.user_name,
                 t2.user_login,                
                 t1.id_post,
                 t1.comment,
                 t1.date_created                               
-                FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id WHERE t1.status = 1 AND t1.id_post = $id ORDER BY date_created DESC ";
+                FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.id_user = t2.id WHERE t1.status = 1 AND t1.id_post = $id ORDER BY $sort $paramSort LIMIT $limit OFFSET $offset ";
 
         $query = $pdo->prepare($sql);
         $query->execute();
@@ -339,21 +369,13 @@
 
     }
 
+//    количество строк таблицы постов для поиска
+
     function count_Rows1($table,$text){
 
         global $pdo;
         $sql = "SELECT COUNT(*) FROM $table WHERE status = 1 AND title LIKE '%$text%'
                 OR content LIKE '%$text%'";
-
-//        if(!empty($param)){
-//            foreach ($param as $key=>$value){
-//                if(!is_numeric($value)){
-//                    $value = "'". $value . "'";
-//                }
-//                $sql = $sql . " AND $key = $value";
-//
-//            }
-//        }
 
         $query = $pdo->prepare($sql);
         $query->execute();
@@ -361,6 +383,8 @@
         return $query->fetchColumn();
 
     }
+
+
 
 
 

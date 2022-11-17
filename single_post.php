@@ -1,6 +1,15 @@
 <?php
     include_once 'path.php';
+    $limit = 10;
     include 'app/controllers/posts.php';
+    $total_pages = ceil(count_Rows('comments',['id_post'=>$_GET['id']]) / $limit);
+//    Лайки поста
+    $param=[
+        'id_user'=>$_SESSION['id'],
+        'id_post'=>$_GET['id']
+    ];
+    $rows = count_Rows_likes('post_likes',$param);
+    $likes = count_Rows_likes('post_likes',['id_post'=>$_GET['id']]);
 ?>
 <!doctype html>
 <html lang="en">
@@ -41,7 +50,20 @@
                   <i class="fa-regular fa-calendar-days col-1"></i>
                   <p class="col-3"><?=$value['date_created']?></p>
                   <i class="fa-regular fa-eye col-1"></i>
-                  <p class="col-3"><?=$value['views']?></p>
+                  <p class="col-1"><?=$value['views']?></p>
+                  <?php if($_SESSION['id']) {?>
+                  <input type="hidden" id="nums"  value="<?= $_SESSION['id'] ?>">
+                  <input type="hidden" id="nums1"  value="<?= $_GET['id'] ?>">
+                  <?php if($rows>0){?>
+                      <i class="fa-solid fa-heart col-1 like" onclick="getData(this,result)" id="get"></i>
+                  <?php }else { ?>
+                      <i class="fa-regular fa-heart col-1 like" onclick="getData(this,result)" id="get"></i>
+                  <?php } ?>
+                  <div class="col-1"><p id="result"><?= $likes ?></p></div>
+                  <?php }else{?>
+                      <i class="fa-regular fa-heart col-1 "></i>
+                      <div class="col-1"><p><?= $likes ?></p></div>
+                  <?php }?>
               </div>
             <div class="single_post_text col-12 ">
                 <?=$value['content']?>
@@ -56,17 +78,64 @@
                     <button type="submit" name="comment">Оставить комментарий</button>
                 </form>
                 <h3>Комментарии</h3>
-                <?php foreach ($comments as $key=>$value1) { ?>
+                <div class="sort row">
+                    <p class="col-2.5">Сортировать по:</p>
+                    <?php if($_SESSION['press']!==1){ ?>
+                        <a href="single_post.php?id=<?= $_GET['id'] ?>&sort=date_created&param=DESC&press=1" class="col-2">Дате &darr;</a>
+                    <?php }else{ ?>
+                        <a href="single_post.php?id=<?= $_GET['id'] ?>&no_sort=1&sort=date_created&param=DESC" class="col-2 i">Дате &darr;</a>
+                    <?php } ?>
+                    <?php if($_SESSION['press']!==2){ ?>
+                        <a href="single_post.php?id=<?= $_GET['id'] ?>&sort=date_created&param=ASC&press=2" class="col-2">Дате &uarr;</a>
+                    <?php }else{ ?>
+                        <a href="single_post.php?id=<?= $_GET['id'] ?>&no_sort=1&sort=date_created&param=DESC" class="col-2 i">Дате &uarr;</a>
+                    <?php } ?>
+                    <?php if($_SESSION['press']!==3){ ?>
+                        <a href="single_post.php?id=<?= $_GET['id'] ?>&sort=score&param=DESC&press=3" class="col-2.5">Количеству лайков &darr;</a>
+                    <?php }else{ ?>
+                        <a href="single_post.php?id=<?= $_GET['id'] ?>&no_sort=1&sort=date_created&param=DESC" class="col-2.5 i">Количеству лайков &darr;</a>
+                    <?php } ?>
+                    <?php if($_SESSION['press']!==4){ ?>
+                        <a href="single_post.php?id=<?= $_GET['id'] ?>&sort=score&param=ASC&press=4" class="col-2.5">Количеству лайков &uarr;</a>
+                    <?php }else{ ?>
+                        <a href="single_post.php?id=<?= $_GET['id'] ?>&no_sort=1&sort=date_created&param=DESC" class="col-2.5 i">Количеству лайков &uarr;</a>
+                    <?php } ?>
+                </div>
+                <?php foreach ($comments as $key=>$value1) {
+                    $param1 = [
+                        'id_comment' => $value1['id'],
+                        'id_user' => $_SESSION['id'],
+                        'id_post' => $_GET['id']
+                    ];
+                    $rows1 = count_Rows_likes('comments_likes', $param1);
+                    $likes1 = count_Rows_likes('comments_likes', ['id_comment'=>$value1['id']]);
+                    ?>
                     <div class="row comment">
                         <div class="author col-2">
                             <p><?=$value1['user_login']==='User'?$value1['user_name']:$value1['user_login'] ?></p>
                             <p><?=$value1['date_created']?></p>
                         </div>
-                        <div class="text_comment col-10">
-                            <p><?=$value1['comment']?></p>
+                        <div class="col-10 text_comment row">
+                            <p class="col-11"><?=$value1['comment']?></p>
+                            <?php if($_SESSION['id']) {?>
+                            <div class="like col-1">
+                                <?php if($rows1>0){?>
+                                    <i class="fa-solid fa-heart lik" onclick="getData2(this,<?= 'result'.$value1['id'] ?>,<?= $value1['id'] ?>)" id="<?= 'get'.$value1['id'] ?>"></i>
+                                <?php }else { ?>
+                                    <i class="fa-regular fa-heart lik" onclick="getData2(this,<?= 'result'.$value1['id'] ?>,<?= $value1['id'] ?>)" id="<?= 'get'.$value1['id'] ?>"></i>
+                                <?php } ?>
+                                <div><p id="<?= 'result'.$value1['id'] ?>"><?= $likes1 ?></p></div>
+                            </div>
+                            <?php } else{ ?>
+                                <div class="like col-1">
+                                    <i class="fa-regular fa-heart"></i>
+                                    <div><p><?= $likes1 ?></p></div>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 <?php } ?>
+                <?php include 'app/include/pagination.php'?>
             </div>
         <?php } ?>
     </div>
@@ -76,6 +145,9 @@
 <!-- footer -->
 <?php include_once 'app/include/footer.php' ?>
 <!-- footer end -->
+
+<script src="assets/js/likes_on_comment.js" ></script>
+<script src="assets/js/likes_on_post.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>-->
 <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>-->

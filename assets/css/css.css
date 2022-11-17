@@ -106,7 +106,7 @@ header ul li ul li a{
 }
 .carousel-caption-hack{
     position: absolute;
-    top: 430px;
+    top: 380px;
     right: 0;
     left: 0;
     bottom: 0.05rem;
@@ -144,7 +144,7 @@ header ul li ul li a{
     text-align: center;
 }
 .main_content h2{
-    margin: 20px 0;
+    margin: 40px 0;
 }
 .main_content {
     min-height: 513px;
@@ -185,12 +185,16 @@ header ul li ul li a{
 .single_post .author_date p{
     padding: 0;
 }
+.single_post .author_date .like:hover{
+    cursor: pointer;
+}
 .single_post .author_date i::before {
     padding-right: 15px;
     float: right;
-    padding-top: 5px;
+    padding-top: 6px;
 }
 .post_text .author_date i::before {
+    padding-top: 3px;
     padding-right: 10px;
     float: right;
 }
@@ -214,6 +218,15 @@ header ul li ul li a{
 }
 .page-item input:hover{
     border:1px solid #212529;
+}
+.page-link{
+    margin-bottom:0 ;
+}
+.page-item form{
+    height: 38px;
+}
+.page-item form input{
+    height: 24px;
 }
 /*
    sidebar
@@ -292,6 +305,7 @@ header ul li ul li a{
     height: 105px;
     border: 2px solid black;
     padding: 0;
+    border-radius:20px 0 0 20px;
 }
 .comments .author p{
     font-size: 20px;
@@ -300,10 +314,27 @@ header ul li ul li a{
 .comments .text_comment{
     background-color: #fff;
     height: 105px;
+    padding: 0;
+    margin: 0;
+    border-radius:0 20px 20px 0;
 }
 .comments .text_comment p{
     margin: 18px 0;
     height: 72px;
+    padding: 0 20px;
+}
+.comments .text_comment .like{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 8px;
+}
+.comments .text_comment .like .lik{
+    cursor: pointer;
+}
+.comments .text_comment .like p{
+    text-align: center;
+    margin: 0;
+    padding: 0;
 }
 .comment{
     margin-bottom: 20px;
