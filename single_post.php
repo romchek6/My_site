@@ -10,6 +10,7 @@
     ];
     $rows = count_Rows_likes('post_likes',$param);
     $likes = count_Rows_likes('post_likes',['id_post'=>$_GET['id']]);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -78,6 +79,7 @@
                     <button type="submit" name="comment">Оставить комментарий</button>
                 </form>
                 <h3>Комментарии</h3>
+<!--  сортировка комментариев по дате, количеству лайков  -->
                 <div class="sort row">
                     <p class="col-2.5">Сортировать по:</p>
                     <?php if($_SESSION['press']!==1){ ?>
@@ -101,12 +103,9 @@
                         <a href="single_post.php?id=<?= $_GET['id'] ?>&no_sort=1&sort=date_created&param=DESC" class="col-2.5 i">Количеству лайков &uarr;</a>
                     <?php } ?>
                 </div>
+
                 <?php foreach ($comments as $key=>$value1) {
-                    $param1 = [
-                        'id_comment' => $value1['id'],
-                        'id_user' => $_SESSION['id'],
-                        'id_post' => $_GET['id']
-                    ];
+                    $param1 = ['id_comment'=>$value1]+$param;
                     $rows1 = count_Rows_likes('comments_likes', $param1);
                     $likes1 = count_Rows_likes('comments_likes', ['id_comment'=>$value1['id']]);
                     ?>

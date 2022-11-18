@@ -66,36 +66,58 @@
         $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users','date_created','DESC',$limit,$offset,null);
     }
 
-    if ($_SERVER['REQUEST_METHOD'] ==='GET' && (isset($_GET['sort'])||isset($_GET['no_sort'])) && !$_GET['search-term'] &&!$_GET['id']){
+    if ($_SERVER['REQUEST_METHOD'] ==='GET' && isset($_GET['sort']) && !$_GET['search-term'] &&!$_GET['id']){
 
-        if($_GET['press']==='1'||$_GET['no_sort'] ==='1'){
-            $_SESSION['press'] = 1;
-            $_SESSION['sort'] = $_GET['sort'];
-            $_SESSION['param'] = $_GET['param'];
-            $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,[]);
-            $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
-        }
-        if($_GET['press']==='2'){
-            $_SESSION['press'] = 2;
-            $_SESSION['sort'] = $_GET['sort'];
-            $_SESSION['param'] = $_GET['param'];
-            $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,null);
-            $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
-        }
-        if($_GET['press']==='3'){
-            $_SESSION['press'] = 3;
-            $_SESSION['sort'] = $_GET['sort'];
-            $_SESSION['param'] = $_GET['param'];
-            $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,null);
-            $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
-        }
-        if($_GET['press']==='4'){
-            $_SESSION['press'] = 4;
-            $_SESSION['sort'] = $_GET['sort'];
-            $_SESSION['param'] = $_GET['param'];
-            $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,null);
-            $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
-        }
+        $_SESSION['press'] = $_GET['press'];
+        $_SESSION['sort'] = $_GET['sort'];
+        $_SESSION['param'] = $_GET['param'];
+        $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,[]);
+        $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
+
+
+
+//        if($_GET['press']==='1'){
+//            $_SESSION['press'] = 1;
+//            $_SESSION['sort'] = $_GET['sort'];
+//            $_SESSION['param'] = $_GET['param'];
+//            $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,[]);
+//            $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
+//        }
+//        if($_GET['press']==='2'){
+//            $_SESSION['press'] = 2;
+//            $_SESSION['sort'] = $_GET['sort'];
+//            $_SESSION['param'] = $_GET['param'];
+//            $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,null);
+//            $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
+//        }
+//        if($_GET['press']==='3'){
+//            $_SESSION['press'] = 3;
+//            $_SESSION['sort'] = $_GET['sort'];
+//            $_SESSION['param'] = $_GET['param'];
+//            $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,null);
+//            $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
+//        }
+//        if($_GET['press']==='4'){
+//            $_SESSION['press'] = 4;
+//            $_SESSION['sort'] = $_GET['sort'];
+//            $_SESSION['param'] = $_GET['param'];
+//            $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,null);
+//            $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
+//        }
+//        if($_GET['press']==='5'){
+//            $_SESSION['press'] = 5;
+//            $_SESSION['sort'] = $_GET['sort'];
+//            $_SESSION['param'] = $_GET['param'];
+//            $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,null);
+//            $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
+//        }
+//        if($_GET['press']==='6'){
+//            $_SESSION['press'] = 6;
+//            $_SESSION['sort'] = $_GET['sort'];
+//            $_SESSION['param'] = $_GET['param'];
+//            $posts = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,null);
+//            $search = select_All_From_Posts_With_Status_On_And_Sort('posts','users',$_SESSION['sort'],$_SESSION['param'],$limit,$offset,['id_topic'=>$_GET['id_topic']]);
+//        }
 
     }
 
