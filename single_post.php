@@ -11,6 +11,20 @@
     $rows = count_Rows_likes('post_likes',$param);
     $likes = count_Rows_likes('post_likes',['id_post'=>$_GET['id']]);
 
+    if($_SESSION['press']==='1'||$_SESSION['press']===1){
+        $sort = ' дате &darr;';
+    }
+    if($_SESSION['press']==='2'||$_SESSION['press']===2){
+        $sort = ' дате &uarr;';
+    }
+    if($_SESSION['press']==='5'||$_SESSION['press']===5){
+        $sort = ' количеству лайков &darr;';
+    }
+    if($_SESSION['press']==='6'||$_SESSION['press']===6){
+        $sort = ' количеству лайков &uarr;';
+    }
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -81,31 +95,42 @@
                 <h3>Комментарии</h3>
 <!--  сортировка комментариев по дате, количеству лайков  -->
                 <div class="sort row">
-                    <p class="col-2.5">Сортировать по:</p>
-                    <?php if($_SESSION['press']!==1){ ?>
-                        <a href="single_post.php?id=<?= $_GET['id'] ?>&sort=date_created&param=DESC&press=1" class="col-2">Дате &darr;</a>
-                    <?php }else{ ?>
-                        <a href="single_post.php?id=<?= $_GET['id'] ?>&no_sort=1&sort=date_created&param=DESC" class="col-2 i">Дате &darr;</a>
-                    <?php } ?>
-                    <?php if($_SESSION['press']!==2){ ?>
-                        <a href="single_post.php?id=<?= $_GET['id'] ?>&sort=date_created&param=ASC&press=2" class="col-2">Дате &uarr;</a>
-                    <?php }else{ ?>
-                        <a href="single_post.php?id=<?= $_GET['id'] ?>&no_sort=1&sort=date_created&param=DESC" class="col-2 i">Дате &uarr;</a>
-                    <?php } ?>
-                    <?php if($_SESSION['press']!==3){ ?>
-                        <a href="single_post.php?id=<?= $_GET['id'] ?>&sort=score&param=DESC&press=3" class="col-2.5">Количеству лайков &darr;</a>
-                    <?php }else{ ?>
-                        <a href="single_post.php?id=<?= $_GET['id'] ?>&no_sort=1&sort=date_created&param=DESC" class="col-2.5 i">Количеству лайков &darr;</a>
-                    <?php } ?>
-                    <?php if($_SESSION['press']!==4){ ?>
-                        <a href="single_post.php?id=<?= $_GET['id'] ?>&sort=score&param=ASC&press=4" class="col-2.5">Количеству лайков &uarr;</a>
-                    <?php }else{ ?>
-                        <a href="single_post.php?id=<?= $_GET['id'] ?>&no_sort=1&sort=date_created&param=DESC" class="col-2.5 i">Количеству лайков &uarr;</a>
-                    <?php } ?>
-                </div>
+                    <ul class="nav nav-tabs col-3">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Сортировать по: <?= $sort ?></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <?php if($_SESSION['press']!=='1'){?>
+                                        <a class="dropdown-item" id="a1" href="single_post.php?sort=date_created&param=DESC&press=1&id=<?= $_GET['id'] ?>"> дате</a>
+                                    <?php }else{ ?>
+                                        <a class="dropdown-item i" id="a1" href="single_post.php?press=1&sort=date_created&param=DESC&id=<?= $_GET['id'] ?>"> дате</a>
+                                    <?php } ?>
+                                </li>
+                                <li>
+                                    <?php if($_SESSION['press']!=='5'){ ?>
+                                        <a class="dropdown-item" id="a3" href="single_post.php?sort=score&param=DESC&press=5&id=<?= $_GET['id'] ?>"> количеству лайков</a>
+                                    <?php }else{ ?>
+                                        <a class="dropdown-item i" id="a3" href="single_post.php?press=1&sort=date_created&param=DESC&id=<?= $_GET['id'] ?>"> количеству лайков</a>
+                                    <?php } ?>
+                                </li>
 
+                                <li>
+                                    <div class="radio">
+                                        <input name="r1" type="radio" id="r1" onclick="sort(this,a1,a3,<?= $_GET['id'] ?>)" value="DESC" <?php if ($_SESSION['param']==='DESC') { ?>checked<?php } ?>> По убыванию
+                                    </div>
+                                </li>
+                                <li>
+                                    <div>
+                                        <input name="r1" type="radio" id="r2" onclick="sort(this,a1,a3,<?= $_GET['id'] ?>)" value="ASC" <?php if ($_SESSION['param']==='ASC') { ?>checked<?php } ?>> По возрастанию
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+<!--     Комментарии -->
                 <?php foreach ($comments as $key=>$value1) {
-                    $param1 = ['id_comment'=>$value1]+$param;
+                    $param1 = ['id_comment'=>$value1['id']]+$param;
                     $rows1 = count_Rows_likes('comments_likes', $param1);
                     $likes1 = count_Rows_likes('comments_likes', ['id_comment'=>$value1['id']]);
                     ?>
@@ -144,7 +169,7 @@
 <!-- footer -->
 <?php include_once 'app/include/footer.php' ?>
 <!-- footer end -->
-
+<script src="assets/js/sort1.js"></script>
 <script src="assets/js/likes_on_comment.js" ></script>
 <script src="assets/js/likes_on_post.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

@@ -11,17 +11,18 @@
         $sort = ' дате &uarr;';
     }
     if($_SESSION['press']==='3'||$_SESSION['press']===3){
-        $sort = ' просмотрам &darr;';
+        $sort = ' количеству просмотров &darr;';
     }
     if($_SESSION['press']==='4'||$_SESSION['press']===4){
-        $sort = ' просмотрам &uarr;';
+        $sort = ' количеству просмотров &uarr;';
     }
     if($_SESSION['press']==='5'||$_SESSION['press']===5){
-        $sort = ' лайкам &darr;';
+        $sort = ' количеству лайков &darr;';
     }
     if($_SESSION['press']==='6'||$_SESSION['press']===6){
-        $sort = ' лайкам &uarr;';
+        $sort = ' количеству лайков &uarr;';
     }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -47,13 +48,13 @@
 <body>
 
 <!-- header -->
-    <?php include_once 'app/include/header.php' ?>
+<?php include_once 'app/include/header.php' ?>
 <!-- header end -->
 <?php ?>
 <!-- carousel -->
 <div class="container">
     <div class="row">
-        <h2 class="carousel_title">Лучшие статьи</h2>
+        <h2 class="carousel_title">Лучшие статьи по просмотрам</h2>
     </div>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
         <div class="carousel-inner">
@@ -76,13 +77,11 @@
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"  data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" id="baton" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
         </button>
     </div>
 </div>
@@ -101,46 +100,36 @@
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Сортировать по: <?= $sort ?></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <?php if($_SESSION['press']!==1){ ?>
-                                    <a class="dropdown-item" href="index.php?sort=date_created&param=DESC&press=1"> дате &darr;</a>
+                                <?php if($_SESSION['press']!=='1'){?>
+                                    <a class="dropdown-item" id="a1" href="index.php?sort=date_created&param=DESC&press=1"> дате</a>
                                 <?php }else{ ?>
-                                    <a class="dropdown-item i" href="index.php?press=1&sort=date_created&param=DESC"> дате &darr;</a>
+                                    <a class="dropdown-item i" id="a1" href="index.php?press=1&sort=date_created&param=DESC"> дате</a>
                                 <?php } ?>
                             </li>
                             <li>
-                                <?php if($_SESSION['press']!==2){ ?>
-                                    <a class="dropdown-item" href="index.php?sort=date_created&param=ASC&press=2"> дате &uarr;</a>
+                                <?php if($_SESSION['press']!=='3'){ ?>
+                                    <a class="dropdown-item" id="a2" href="index.php?sort=views&param=DESC&press=3"> количеству просмотров</a>
                                 <?php }else{ ?>
-                                    <a class="dropdown-item i" href="index.php?press=1&sort=date_created&param=DESC"> дате &uarr;</a>
+                                    <a class="dropdown-item i" id="a2" href="index.php?press=1&sort=date_created&param=DESC"> количеству просмотров</a>
                                 <?php } ?>
                             </li>
                             <li>
-                                <?php if($_SESSION['press']!==3){ ?>
-                                    <a class="dropdown-item" href="index.php?sort=views&param=DESC&press=3"> количеству просмотров &darr;</a>
+                                <?php if($_SESSION['press']!=='5'){ ?>
+                                    <a class="dropdown-item" id="a3" href="index.php?sort=score&param=DESC&press=5"> количеству лайков</a>
                                 <?php }else{ ?>
-                                    <a class="dropdown-item i" href="index.php?press=1&sort=date_created&param=DESC"> количеству просмотров &darr;</a>
+                                    <a class="dropdown-item i" id="a3" href="index.php?press=1&sort=date_created&param=DESC"> количеству лайков</a>
                                 <?php } ?>
                             </li>
+
                             <li>
-                                <?php if($_SESSION['press']!==4){ ?>
-                                    <a class="dropdown-item" href="index.php?sort=views&param=ASC&press=4"> количеству просмотров &uarr;</a>
-                                <?php }else{ ?>
-                                    <a class="dropdown-item i" href="index.php?press=1&sort=date_created&param=DESC"> количеству просмотров &uarr;</a>
-                                <?php } ?>
+                                <div class="radio">
+                                    <input name="r1" type="radio" id="r1" onclick="sort(this,a1,a2,a3)" value="DESC" <?php if ($_SESSION['param']==='DESC') { ?>checked<?php } ?>> По убыванию
+                                </div>
                             </li>
                             <li>
-                                <?php if($_SESSION['press']!==5){ ?>
-                                    <a class="dropdown-item" href="index.php?sort=score&param=DESC&press=5"> количеству лайков &darr;</a>
-                                <?php }else{ ?>
-                                    <a class="dropdown-item i" href="index.php?press=1&sort=date_created&param=DESC"> количеству лайков &darr;</a>
-                                <?php } ?>
-                            </li>
-                            <li>
-                                <?php if($_SESSION['press']!==6){ ?>
-                                    <a class="dropdown-item" href="index.php?sort=score&param=ASC&press=6"> количеству лайков &uarr;</a>
-                                <?php }else{ ?>
-                                    <a class="dropdown-item i" href="index.php?press=1&sort=date_created&param=DESC"> количеству лайков &uarr;</a>
-                                <?php } ?>
+                                <div>
+                                    <input name="r1" type="radio" id="r2" onclick="sort(this,a1,a2,a3)" value="ASC" <?php if ($_SESSION['param']==='ASC') { ?>checked<?php } ?>> По возрастанию
+                                </div>
                             </li>
                         </ul>
                     </li>
@@ -214,7 +203,8 @@
 <!-- footer -->
 <?php include_once 'app/include/footer.php' ?>
 <!-- footer end -->
-
+<script src="assets/js/sort.js"></script>
+<script src="assets/js/carousel.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>-->
 <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>-->

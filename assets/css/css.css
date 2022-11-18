@@ -124,6 +124,9 @@ header ul li ul li a{
 .col-2\.5{
     width: 22%;
 }
+.sort{
+    margin: 10px 0;
+}
 .sort a{
    margin-bottom: 16px;
     text-align: center;
@@ -134,10 +137,29 @@ header ul li ul li a{
 .sort ul li a::after{
    border: none;
 }
+.sort ul li a{
+    margin-left:40px ;
+}
+.sort ul li ul li a{
+    margin-left:0;
+}
+.sort ul li ul li div{
+    text-align: center;
+    padding-bottom: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+.radio{
+    padding-top: 20px;
+    border-top: 1px solid black;
+}
 .nav{
     --bs-nav-link-hover-color: #212529;
 }
 .nav-tabs .nav-link{
+    border: none;
+}
+.nav-tabs{
     border: none;
 }
 .sort a:hover{
@@ -251,7 +273,7 @@ header ul li ul li a{
    sidebar
  */
 .search{
-    margin-top: 40px;
+    margin-top: 59px;
 }
 
 .search input{
