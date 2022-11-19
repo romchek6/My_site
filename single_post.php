@@ -2,6 +2,7 @@
     include_once 'path.php';
     $limit = 10;
     include 'app/controllers/posts.php';
+    include 'app/controllers/comments.php';
     $total_pages = ceil(count_Rows('comments',['id_post'=>$_GET['id']]) / $limit);
 //    Лайки поста
     $param=[
@@ -12,16 +13,16 @@
     $likes = count_Rows_likes('post_likes',['id_post'=>$_GET['id']]);
 
     if($_SESSION['press']==='1'||$_SESSION['press']===1){
-        $sort = ' дате &darr;';
+        $sort1 = ' дате &darr;';
     }
     if($_SESSION['press']==='2'||$_SESSION['press']===2){
-        $sort = ' дате &uarr;';
+        $sort1 = ' дате &uarr;';
     }
     if($_SESSION['press']==='5'||$_SESSION['press']===5){
-        $sort = ' количеству лайков &darr;';
+        $sort1 = ' количеству лайков &darr;';
     }
     if($_SESSION['press']==='6'||$_SESSION['press']===6){
-        $sort = ' количеству лайков &uarr;';
+        $sort1 = ' количеству лайков &uarr;';
     }
 
 
@@ -32,17 +33,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My blog</title>
+    <script
+            src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
   <!--    icons-->
-  <script src="https://kit.fontawesome.com/1fe27e3f18.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1fe27e3f18.js" crossorigin="anonymous"></script>
   <!--    Bootstrap-->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
   <!--    fonts-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/emojionearea/3.4.2/emojionearea.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Kaushan+Script&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <!--    css-->
-  <link rel="stylesheet" href="assets/css/css.css">
+    <link rel="stylesheet" href="assets/css/css.css">
 </head>
 <body>
 <!-- header -->
@@ -87,7 +92,7 @@
             <div class="col-md-12 col-12 mb-3 comments">
                 <h3>Оставить комментарий</h3>
                 <form action="single_post.php" method="post" class="row">
-                    <input type="hidden" value="<?=$_GET['id']?>" name="id">
+                    <input type="hidden" value="<?=$_GET['id']?>" name="id" id="id">
                     <textarea name="text" id="description" placeholder="Комментарий..."></textarea>
                     <span></span>
                     <button type="submit" name="comment">Оставить комментарий</button>
@@ -97,20 +102,20 @@
                 <div class="sort row">
                     <ul class="nav nav-tabs col-3">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Сортировать по: <?= $sort ?></a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Сортировать по: <?= $sort1 ?></a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <?php if($_SESSION['press']!=='1'){?>
-                                        <a class="dropdown-item" id="a1" href="single_post.php?sort=date_created&param=DESC&press=1&id=<?= $_GET['id'] ?>"> дате</a>
+                                        <a class="dropdown-item" id="a1" href="single_post.php?sort=date_created&param=DESC&press=1&id1=<?= $_GET['id'] ?>"> дате</a>
                                     <?php }else{ ?>
-                                        <a class="dropdown-item i" id="a1" href="single_post.php?press=1&sort=date_created&param=DESC&id=<?= $_GET['id'] ?>"> дате</a>
+                                        <a class="dropdown-item i" id="a1" href="single_post.php?press=1&sort=date_created&param=DESC&id2=<?= $_GET['id'] ?>"> дате</a>
                                     <?php } ?>
                                 </li>
                                 <li>
                                     <?php if($_SESSION['press']!=='5'){ ?>
-                                        <a class="dropdown-item" id="a3" href="single_post.php?sort=score&param=DESC&press=5&id=<?= $_GET['id'] ?>"> количеству лайков</a>
+                                        <a class="dropdown-item" id="a3" href="single_post.php?sort=score&param=DESC&press=5&id1=<?= $_GET['id'] ?>"> количеству лайков</a>
                                     <?php }else{ ?>
-                                        <a class="dropdown-item i" id="a3" href="single_post.php?press=1&sort=date_created&param=DESC&id=<?= $_GET['id'] ?>"> количеству лайков</a>
+                                        <a class="dropdown-item i" id="a3" href="single_post.php?press=1&sort=date_created&param=DESC&id2=<?= $_GET['id'] ?>"> количеству лайков</a>
                                     <?php } ?>
                                 </li>
 

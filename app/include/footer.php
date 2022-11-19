@@ -1,4 +1,5 @@
 <div class="footer container-fluid">
+    <a name="footer"></a>
     <div class="footer-content container">
         <div class="row">
             <div class="section about col-md-4 cpl-12">

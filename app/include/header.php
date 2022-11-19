@@ -12,9 +12,8 @@
             </div>
             <nav class="col-8">
                 <ul class="">
-                    <li><a href="#"fa-solid fa-house-chimney"></i> Главная</a></li>
-                    <li><a href="#"><i class="fa-solid fa-address-card"></i> О нас</a></li>
-                    <li><a href="#"><i class="fa-brands fa-servicestack"></i> Услуги</a></li>
+                    <li><a href="<?= INDEX_URL ?>">  Главная</a></li>
+                    <li><a href="#footer"><i class="fa-solid fa-address-card"></i> О нас</a></li>
                     <li>
                         <?php
                             if($_SESSION['id']){?>

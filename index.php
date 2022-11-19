@@ -5,22 +5,22 @@
     $total_pages = ceil(count_Rows('posts',null) / $limit);
 
     if($_SESSION['press']==='1'||$_SESSION['press']===1){
-        $sort = ' дате &darr;';
+        $sort1 = ' дате &darr;';
     }
     if($_SESSION['press']==='2'||$_SESSION['press']===2){
-        $sort = ' дате &uarr;';
+        $sort1 = ' дате &uarr;';
     }
     if($_SESSION['press']==='3'||$_SESSION['press']===3){
-        $sort = ' количеству просмотров &darr;';
+        $sort1 = ' количеству просмотров &darr;';
     }
     if($_SESSION['press']==='4'||$_SESSION['press']===4){
-        $sort = ' количеству просмотров &uarr;';
+        $sort1 = ' количеству просмотров &uarr;';
     }
     if($_SESSION['press']==='5'||$_SESSION['press']===5){
-        $sort = ' количеству лайков &darr;';
+        $sort1 = ' количеству лайков &darr;';
     }
     if($_SESSION['press']==='6'||$_SESSION['press']===6){
-        $sort = ' количеству лайков &uarr;';
+        $sort1 = ' количеству лайков &uarr;';
     }
 
 ?>
@@ -30,7 +30,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My blog</title>
-
+    <script
+            src="https://code.jquery.com/jquery-3.6.1.min.js"
+            integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+            crossorigin="anonymous"></script>
     <!--    icons-->
     <script src="https://kit.fontawesome.com/1fe27e3f18.js" crossorigin="anonymous"></script>
 
@@ -54,7 +57,7 @@
 <!-- carousel -->
 <div class="container">
     <div class="row">
-        <h2 class="carousel_title">Лучшие статьи по просмотрам</h2>
+        <h2 class="carousel_title">Лучшие статьи</h2>
     </div>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
         <div class="carousel-inner">
@@ -97,7 +100,7 @@
                 <div class="sort row">
                 <ul class="nav nav-tabs col-3">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Сортировать по: <?= $sort ?></a>
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Сортировать по: <?= $sort1 ?></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <?php if($_SESSION['press']!=='1'){?>
